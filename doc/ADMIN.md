@@ -1,3 +1,3 @@
-This is a dummy admin doc for this app
+# Disclaimer
 
-The app install dir is `__INSTALL_DIR__`
+This webapp does not store nor transmit your data.

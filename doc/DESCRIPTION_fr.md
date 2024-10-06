@@ -1,1 +1,1 @@
-Ceci est une fausse description des fonctionalités de l'app
+Outils en ligne utiles aux developpeurs et aux personnes travaillant dans l'informatique.

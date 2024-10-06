@@ -1,3 +1,3 @@
-Ceci est une fausse doc d'admin pour cette app
+# Avertissement
 
-Le dossier d'install de l'app est `__INSTALL_DIR__`
+Cette application web ne stocke ni ne transmet vos données.

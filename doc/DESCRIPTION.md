@@ -1,1 +1,1 @@
-This is a dummy description of this app features
+Useful online tools for developers and people working in IT.
