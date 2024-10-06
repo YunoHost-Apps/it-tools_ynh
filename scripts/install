@@ -3,17 +3,12 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
-upstream_source_url=$(ynh_read_manifest "resources.sources.main.url")
-source_filename=$(basename $upstream_source_url)
-index_page=$(basename -s .zip $upstream_source_url).html #this variable will also populate the template tag __INDEX_PAGE__ in nginx.conf
-
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Setting up source files..."
 
 ynh_setup_source --dest_dir="$install_dir"
-ynh_replace --match="$source_filename" --replace="$upstream_source_url" --file="$install_dir/$index_page" #replace link to local source file with link to upstream source file
 
 #=================================================
 # SYSTEM CONFIGURATION
