@@ -10,19 +10,24 @@ ynh_script_progression "Setting up source files..."
 
 ynh_setup_source --dest_dir="$install_dir"
 
+# Replace 
 ynh_replace --match="https://it-tools.tech" --replace="$domain" --file="$install_dir/index.html"
+
+# Fix relative paths
 ynh_replace --match="/assets/" --replace="./assets" --file="$install_dir/index.html"
 ynh_replace --match="/manifest." --replace="./manifest." --file="$install_dir/index.html"
 
-main_js=$(cat $install_dir/index.html | grep -o 'crossorigin src="./assets/.*\.js' | cut -d'/' -f3-) # e.g.: index-65600c6f.js
-
+# Set home route at app root rather than at domain root
+main_js=$(cat $install_dir/index.html | grep -o 'crossorigin src="./assets/.*\.js' | cut -d/ -f3-) # e.g.: index-65600c6f.js
 echo $main_js
+sed -Ei "s/routes:\[\{path:\"\/\",name:\"home\",component:qre\}/routes:\[\{path:\"$j\",name:\"home\",component:qre\}/g" "$install_dir/assets/$main_js" 
 
-ynh_replace --match="routes:[{path:\"\/\",name:\"home\",component:qre}" --replace="routes:[{path:\"$path\",name:\"home\",component:qre}" --file="$install_dir/assets/$main_js" # Set routes at app root level $path rather than to domain root 
-ynh_replace --match="{to:\"\/\",circle:\"\",variant:\"text\",\"aria-label\":p.$t(\"home.home\")}" --replace="{to:\"$path\",circle:\"\",variant:\"text\",\"aria-label\":p.$t(\"home.home\")}" --file="$install_dir/assets/$main_js" # Change Home button link 
+# Make home button link point to app root
+sed -Ei "s/\{to:\"\/\",circle:\"\",variant:\"text\",\"aria-label\":p.$t(\"home.home\")\}/\{to:\"$path\",circle:\"\",variant:\"text\",\"aria-label\":p.$t(\"home.home\")\}" "$install_dir/assets/$main_js"
 
-main_css=$(cat $install_dir/index.html | grep -o 'stylesheet" href="./assets/.*\.css' | cut -d'/' -f3-) # e.g.: index-ac305cd5.css
-sed -Ei 's/(\.support-button[^]]*\]\{[^}]*)/\1;display:none/' "$install_dir/assets/$main_css" # Hide big buy coffee button
+# Hide big buy coffee button
+main_css=$(cat $install_dir/index.html | grep -o 'stylesheet" href="./assets/.*\.css' | cut -d/ -f3-) # e.g.: index-ac305cd5.css
+sed -Ei 's/(\.support-button[^]]*\]\{[^}]*)/\1;display:none/' "$install_dir/assets/$main_css"
 
 
 #=================================================
