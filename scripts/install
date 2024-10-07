@@ -15,8 +15,11 @@ ynh_replace --match="/assets/" --replace="./assets" --file="$install_dir/index.h
 ynh_replace --match="/manifest." --replace="./manifest." --file="$install_dir/index.html"
 
 main_js=$(cat $install_dir/index.html | grep -o 'crossorigin src="./assets/.*\.js' | cut -d'/' -f3-) # e.g.: index-65600c6f.js
-ynh_replace --match='routes:[{path:\"\/\",name:\"home\",component:qre}' --replace="routes:[{path:\"$path\",name:\"home\",component:qre}" --file="$install_dir/assets/$main_js" # Set routes at app root level $path rather than to domain root 
-ynh_replace --match='{to:\"\/\",circle:\"\",variant:\"text\",\"aria-label\":p.$t(\"home.home\")}' --replace="{to:\"$path\",circle:\"\",variant:\"text\",\"aria-label\":p.$t(\"home.home\")}" --file="$install_dir/assets/$main_js" # Change Home button link 
+
+echo $main_js
+
+ynh_replace --match="routes:[{path:\"\/\",name:\"home\",component:qre}" --replace="routes:[{path:\"$path\",name:\"home\",component:qre}" --file="$install_dir/assets/$main_js" # Set routes at app root level $path rather than to domain root 
+ynh_replace --match="{to:\"\/\",circle:\"\",variant:\"text\",\"aria-label\":p.$t(\"home.home\")}" --replace="{to:\"$path\",circle:\"\",variant:\"text\",\"aria-label\":p.$t(\"home.home\")}" --file="$install_dir/assets/$main_js" # Change Home button link 
 
 main_css=$(cat $install_dir/index.html | grep -o 'stylesheet" href="./assets/.*\.css' | cut -d'/' -f3-) # e.g.: index-ac305cd5.css
 sed -Ei 's/(\.support-button[^]]*\]\{[^}]*)/\1;display:none/' "$install_dir/assets/$main_css" # Hide big buy coffee button
