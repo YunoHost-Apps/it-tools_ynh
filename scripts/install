@@ -10,6 +10,18 @@ ynh_script_progression "Setting up source files..."
 
 ynh_setup_source --dest_dir="$install_dir"
 
+ynh_replace --match="https://it-tools.tech" --replace="$domain" --file=index.html
+ynh_replace --match="/assets/" --replace="./assets" --file=index.html
+ynh_replace --match="/manifest." --replace="./manifest." --file=index.html
+
+main_js=$(cat index.html | grep -o 'crossorigin src="./assets/.*\.js' | cut -d'/' -f3-) # e.g.: index-65600c6f.js
+ynh_replace --match="routes:[{path:\"/\",name:\"home\",component:qre}" --replace="routes:[{path:\"$path\",name:\"home\",component:qre}" --file="assets/$main_js" # Set routes at app root level $path rather than to domain root 
+ynh_replace --match='{to:"/",circle:"",variant:"text","aria-label":p.$t("home.home")}' --replace="{to:\"$path\",circle:\"\",variant:\"text\",\"aria-label\":p.$t(\"home.home\")}" --file="assets/$main_js" # Change Home button link 
+
+main_css=$(cat index.html | grep -o 'stylesheet" href="./assets/.*\.css' | cut -d'/' -f3-) # e.g.: index-ac305cd5.css
+sed -Ei 's/(\.support-button[^]]*\]\{[^}]*)/\1;display:none/' "assets/$main_css" # Hide big buy coffee button
+
+
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
