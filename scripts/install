@@ -20,7 +20,7 @@ ynh_replace --match="/manifest." --replace="./manifest." --file="$install_dir/in
 # Set home route at app root rather than at domain root
 main_js=$(cat $install_dir/index.html | grep -o 'crossorigin src="./assets/.*\.js' | cut -d/ -f3-) # e.g.: index-65600c6f.js
 echo $main_js
-sed -Ei "s/routes:\[\{path:\"\/\",name:\"home\",component:qre\}/routes:\[\{path:\"$j\",name:\"home\",component:qre\}/g" "$install_dir/assets/$main_js" 
+sed -Ei "s/routes:\[\{path:\"\/\",name:\"home\",component:qre\}/routes:\[\{path:\"$path\",name:\"home\",component:qre\}/g" "$install_dir/assets/$main_js" 
 
 # Make home button link point to app root
 sed -Ei "s/\{to:\"\/\",circle:\"\",variant:\"text\",\"aria-label\":p.$t(\"home.home\")\}/\{to:\"$path\",circle:\"\",variant:\"text\",\"aria-label\":p.$t(\"home.home\")\}" "$install_dir/assets/$main_js"
