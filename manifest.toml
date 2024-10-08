@@ -2,10 +2,10 @@ packaging_format = 2
 
 id = "it-tools"
 name = "IT Tools"
-description.en = "Collection of handy online tools for developers."
-description.fr = "Collection d'outils pratiques en ligne pour les développeurs."
+description.en = "Collection of handy online tools for developers"
+description.fr = "Collection d'outils pratiques en ligne pour les développeurs"
 
-version = "2024.5.13~ynh1"
+version = "2024.5.13-a0bc346~ynh1"
 
 maintainers = ["oleole39"]
 
@@ -51,7 +51,7 @@ ram.runtime = "20M"
         in_subdir = true
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset = "it-tools-.*zip"
-        autoupdate.version_regex = "^(.*\\..*\\..*)\\-.*$"
+        autoupdate.version_regex = "^v(\\d{4}\\.\\d{1,2}\\.\\d{1,2})\\-[a-z0-9]{7}$"
 
     [resources.system_user]
 
