@@ -10,6 +10,24 @@ ynh_script_progression "Upgrading source files..."
 	
 ynh_setup_source --dest_dir="$install_dir" --full_replace
 
+# Replace official app domain with current YNH instance's    
+ynh_replace --match="https://it-tools.tech" --replace="$domain" --file="$install_dir/index.html"
+
+# Fix relative paths
+ynh_replace --match="/assets" --replace="./assets" --file="$install_dir/index.html"
+ynh_replace --match="/manifest." --replace="./manifest." --file="$install_dir/index.html"
+
+# Set home route at app root rather than at domain root
+main_js=$(grep -o 'crossorigin src=\"\./assets.*\.js' $install_dir/index.html | cut -d/ -f3-) # e.g.: index-65600c6f.js
+sed -Ei "s@routes:\[\{path:\"\/\",name:\"home\",component:qre\}@routes:\[\{path:\"$path\",name:\"home\",component:qre\}@g" "$install_dir/assets/$main_js" 
+
+# Make home button link point to app root
+sed -i "s@{to:\"/\",circle:\"\",variant:\"text\",\"aria-label\":p\.\$t(\"home\.home\")\}@{to:\"$path\",circle:\"\",variant:\"text\",\"aria-label\":p\.\$t(\"home\.home\")\}@g" "$install_dir/assets/$main_js" 
+
+# Hide big buy coffee button
+main_css=$(grep -o 'stylesheet" href="./assets/.*\.css' $install_dir/index.html | cut -d/ -f3-) # e.g.: index-ac305cd5.css
+sed -Ei 's/(\.support-button[^]]*\]\{[^}]*)/\1;display:none/' "$install_dir/assets/$main_css"
+
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
