@@ -18,7 +18,7 @@ No se debe editar a mano.
 
 Useful online tools for developers and people working in IT.
 
-**Versión actual:** 1.0.0~ynh1
+**Versión actual:** 2024.5.13~ynh1
 
 **Demo:** <https://it-tools.tech>
 

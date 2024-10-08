@@ -18,7 +18,7 @@ It shall NOT be edited by hand.
 
 Useful online tools for developers and people working in IT.
 
-**Shipped version:** 1.0.0~ynh1
+**Shipped version:** 2024.5.13~ynh1
 
 **Demo:** <https://it-tools.tech>
 

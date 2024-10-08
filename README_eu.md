@@ -18,7 +18,7 @@ EZ editatu eskuz.
 
 Useful online tools for developers and people working in IT.
 
-**Paketatutako bertsioa:** 1.0.0~ynh1
+**Paketatutako bertsioa:** 2024.5.13~ynh1
 
 **Demoa:** <https://it-tools.tech>
 

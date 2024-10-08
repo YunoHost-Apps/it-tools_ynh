@@ -18,7 +18,7 @@
 
 Useful online tools for developers and people working in IT.
 
-**Поставляемая версия:** 1.0.0~ynh1
+**Поставляемая версия:** 2024.5.13~ynh1
 
 **Демо-версия:** <https://it-tools.tech>
 
