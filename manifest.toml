@@ -2,8 +2,8 @@ packaging_format = 2
 
 id = "it-tools"
 name = "IT Tools"
-description.en = "Collection of handy online tools for developers."
-description.fr = "Collection d'outils pratiques en ligne pour les développeurs."
+description.en = "Collection of handy online tools for developers"
+description.fr = "Collection d'outils pratiques en ligne pour les développeurs"
 
 version = "2024.5.13~ynh1"
 
