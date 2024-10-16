@@ -51,7 +51,7 @@ ram.runtime = "20M"
         in_subdir = true
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset = "it-tools-.*zip"
-        autoupdate.version_regex = "^v(\\d{4}\\.\\d{1,2}\\.\\d{1,2})\\-[a-z0-9]{7}$"
+        autoupdate.version_regex = "^v(\\d{4}\\.\\d{1,2}\\.\\d{1,2}\\-[a-z0-9]{7})$"
 
     [resources.system_user]
 
