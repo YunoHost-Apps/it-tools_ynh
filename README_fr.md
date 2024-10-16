@@ -18,7 +18,7 @@ Il NE doit PAS être modifié à la main.
 
 Outils en ligne utiles aux developpeurs et aux personnes travaillant dans l'informatique.
 
-**Version incluse :** 2024.5.13-a0bc346~ynh1
+**Version incluse :** 2024.5.13~ynh1
 
 **Démo :** <https://it-tools.tech>
 

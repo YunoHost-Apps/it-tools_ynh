@@ -18,7 +18,7 @@ Hij mag NIET handmatig aangepast worden.
 
 Useful online tools for developers and people working in IT.
 
-**Geleverde versie:** 2024.5.13-a0bc346~ynh1
+**Geleverde versie:** 2024.5.13~ynh1
 
 **Demo:** <https://it-tools.tech>
 
