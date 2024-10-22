@@ -18,7 +18,7 @@
 
 Useful online tools for developers and people working in IT.
 
-**分发版本：** 2024.5.13~ynh1
+**分发版本：** 2024.10.22~ynh1
 
 **演示：** <https://it-tools.tech>
 
