@@ -19,10 +19,10 @@ ynh_replace --match="/manifest." --replace="./manifest." --file="$install_dir/in
 
 # Set home route at app root rather than at domain root
 main_js=$(grep -o 'crossorigin src=\"\./assets.*\.js' $install_dir/index.html | cut -d/ -f3-) # e.g.: index-65600c6f.js
-sed -Ei "s@routes:\[\{path:\"\/\",name:\"home\"@routes:\[\{path:\"$path\",name:\"home\"@g" "$install_dir/assets/$main_js" 
+#~ sed -Ei "s@routes:\[\{path:\"\/\",name:\"home\"@routes:\[\{path:\"$path\",name:\"home\"@g" "$install_dir/assets/$main_js" 
 
 # Make home button link point to app root
-sed -i "s@{to:\"/\",circle:\"\",variant:\"text\",\"aria-label\":p\.\$t(\"home\.home\")\}@{to:\"$path\",circle:\"\",variant:\"text\",\"aria-label\":p\.\$t(\"home\.home\")\}@g" "$install_dir/assets/$main_js" 
+#~ sed -i "s@{to:\"/\",circle:\"\",variant:\"text\",\"aria-label\":p\.\$t(\"home\.home\")\}@{to:\"$path\",circle:\"\",variant:\"text\",\"aria-label\":p\.\$t(\"home\.home\")\}@g" "$install_dir/assets/$main_js" 
 
 # Hide big buy coffee button
 main_css=$(grep -o 'stylesheet" href="./assets/.*\.css' $install_dir/index.html | cut -d/ -f3-) # e.g.: index-ac305cd5.css
