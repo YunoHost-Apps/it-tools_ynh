@@ -140,8 +140,7 @@ if [[ $gh_personal_token ]]; then
     exit 0
 
 else
-    echo $(realpath $ynh_archive_name)
-    if [[ $GITHUB_OUTPUT ]]; then echo "YHN_ARCHIVE=$(realpath $ynh_archive_name)" >> $GITHUB_OUTPUT; fi
-    set +x 
+    if [[ $GITHUB_OUTPUT ]]; then echo "YHN_ARCHIVE=${ynh_archive_name}" >> $GITHUB_OUTPUT; fi
     echo "Build completed but not uploaded - missing Github Token"
+    set +x 
 fi
