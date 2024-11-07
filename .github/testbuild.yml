@@ -1,0 +1,34 @@
+name: ynh-build-on-upstream-update
+jobs: 
+  ynh-app-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Parse data from PR
+        id: pr_data
+          run: echo "VERSION=${Upgrade to v0.0.0#Upgrade to v}" >> $GITHUB_OUTPUT
+          run: echo "URL=https://my-test-changelog.tld" >> $GITHUB_OUTPUT
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Build release
+        id: build_release
+        uses: actions/setup-node@v4
+          with:
+            node-version: 20
+        run: | 
+          chmod +x scripts/build
+          ./scripts/build
+          echo "YNH_ARCHIVE=${ynh_archive_name}" >> $GITHUB_OUTPUT 
+      - name: Prepare draft release
+        id: draft_release
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: ${{ steps.build_release.outputs.YNH_ARCHIVE }}
+          tag_name: v${{ steps.pr_data.outputs.VERSION }}
+          draft: true
+          prerelease: false
+          body: |
+            ## Changelog
+            Cf. upstream release note: ${{ steps.pr_data.outputs.URL }}
+
+
