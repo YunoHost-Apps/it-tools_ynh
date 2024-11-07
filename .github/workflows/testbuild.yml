@@ -5,8 +5,9 @@ jobs:
     steps:
       - name: Parse data from PR
         id: pr_data
-        run: echo "VERSION=0.0.0" >> $GITHUB_OUTPUT
-        run: echo "URL=https://my-test-changelog.tld" >> $GITHUB_OUTPUT
+        run: |
+          echo "VERSION=0.0.0" >> $GITHUB_OUTPUT
+          echo "URL=https://my-test-changelog.tld" >> $GITHUB_OUTPUT
       - name: Checkout repo
         uses: actions/checkout@v4
       - name: Build release
