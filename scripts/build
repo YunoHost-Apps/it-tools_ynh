@@ -11,7 +11,7 @@ upstream_owner="CorentinTh"
 upstream_repo="it-tools"
 ynh_owner="Yunohost-Apps"
 ynh_repo="it-tools_ynh"
-$build_node_version=20
+build_node_version=20
 
 #Fill with Github Personal Token to upload release after build (not required if build is part of a Github workflow) - https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
 gh_personal_token="" 
