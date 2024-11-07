@@ -60,13 +60,6 @@ rm -r "${build_folder}"
 rm "${build_folder}.tar.gz"
 
 #=================================================
-# (GH-WORKFLOW ONLY) EXPORT BUILT PACKAGE FILEPATH
-#=================================================
-if [[ $GITHUB_OUTPUT ]]; then
-    echo "YHN_ARCHIVE=$(realpath $ynh_archive_name)" >> $GITHUB_OUTPUT
-fi
-
-#=================================================
 # UPLOAD RELEASE - LOCAL BUILD ONLY
 #=================================================
 if [[ $gh_personal_token ]]; then
@@ -149,4 +142,5 @@ if [[ $gh_personal_token ]]; then
 else
     set +x 
     echo "Build completed but not uploaded - missing Github Token"
+    if [[ $GITHUB_OUTPUT ]]; then echo "YHN_ARCHIVE=$(realpath $ynh_archive_name)"
 fi

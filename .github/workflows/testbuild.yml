@@ -21,9 +21,10 @@ jobs:
         id: build_release
         run: | 
           chmod +x scripts/build
-          ./scripts/build
+          output=$(./scripts/build)
+          echo "YNH_ARCHiVE=$(echo -e $output | tail -n 1)" >> $GITHUB_OUTPUT 
       - name: test
-        run: echo ${{ steps.build_release.outputs.YNH_ARCHIVE }}
+        run: echo ${{ steps.build_release.outputs }}
       - name: Prepare draft release
         id: draft_release
         uses: softprops/action-gh-release@v2
