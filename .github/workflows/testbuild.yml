@@ -22,6 +22,7 @@ jobs:
         run: | 
           chmod +x scripts/build
           ./scripts/build
+          echo "YNH_ARCHIVE=${ynh_archive_name}" >> $GITHUB_OUTPUT
       - name: Prepare draft release
         id: draft_release
         uses: softprops/action-gh-release@v2
@@ -34,5 +35,3 @@ jobs:
           body: |
             ## Changelog
             Cf. upstream release note: ${{ steps.pr_data.outputs.URL }}
-      - name: test
-        run: echo ${{ steps.build_release.outputs.YHN_ARCHIVE }}
