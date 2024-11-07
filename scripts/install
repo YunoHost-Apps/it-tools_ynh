@@ -19,6 +19,7 @@ grep -rli '/__YNH_SUBDIR_PATH__' $install_dir/* | xargs sed -i "s@/__YNH_SUBDIR_
 
 # Hide big buy coffee button
 main_css=$(grep -o "stylesheet\" href=\"${newpath}/assets/.*\.css" "$install_dir/index.html") # e.g.: index-ac305cd5.css
+echo $main_css
 main_css=$(echo $main_css | cut -d/ -f3-)
 sed -Ei 's/(\.support-button[^]]*\]\{[^}]*)/\1;display:none/' "$install_dir/assets/$main_css"
 
