@@ -60,9 +60,11 @@ rm -r "${build_folder}"
 rm "${build_folder}.tar.gz"
 
 #=================================================
-# UPLOAD RELEASE - LOCAL BUILD ONLY
+# UPLOAD RELEASE
 #=================================================
-if [[ $gh_personal_token ]]; then
+
+# Upload with Github Personal Token (local build, i.e. not running a Github Workflow)
+if [[ $gh_personal_token ]] && [[ -z $GITHUB_OUTPUT ]; then
     
     echo "Trying to upload the release to https://github.com/${ynh_owner}/${ynh_repo}/releases/ ..."
 
@@ -139,8 +141,9 @@ if [[ $gh_personal_token ]]; then
 
     exit 0
 
+# Script run with Github Workflow or with empty $gh_personal_token
 else
-    if [[ $GITHUB_OUTPUT ]]; then echo "YNH_ARCHIVE=${ynh_archive_name}" >> $GITHUB_OUTPUT; fi
+    if [[ $GITHUB_OUTPUT ]]; then echo "YNH_ARCHIVE=${ynh_archive_name}" >> $GITHUB_OUTPUT; fi #export var for Github Workflow
     echo "Build completed but not uploaded - missing Github Token"
     set +x 
 fi
