@@ -15,11 +15,12 @@ jobs:
           echo "URL=https://my-test-changelog.tld" >> $GITHUB_OUTPUT
       - name: Checkout repo
         uses: actions/checkout@v4
-      - name: Build release
-        id: build_release
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Build release
+        id: build_release
         run: | 
           chmod +x scripts/build
           ./scripts/build
