@@ -1,4 +1,5 @@
 name: ynh-build-on-upstream-update
+on: workflow_call
 jobs: 
   ynh-app-release:
     runs-on: ubuntu-latest
@@ -13,8 +14,8 @@ jobs:
       - name: Build release
         id: build_release
         uses: actions/setup-node@v4
-          with:
-            node-version: 20
+        with:
+          node-version: 20
         run: | 
           chmod +x scripts/build
           ./scripts/build
