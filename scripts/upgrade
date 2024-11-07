@@ -10,6 +10,9 @@ ynh_script_progression "Upgrading source files..."
 	
 ynh_setup_source --dest_dir="$install_dir" --source_id="ynh_build" --full_replace
 
+# Replace path placeholder recursively in all files of the app folder
+grep -rli '__YNH_SUBDIR_PATH__' $install_dir/* | xargs -i@ ynh_replace --match=='__YNH_SUBDIR_PATH__' --replace="$path" @
+
 # Replace official app domain with current YNH instance's    
 ynh_replace --match="https://it-tools.tech" --replace="https://$domain$path" --file="$install_dir/index.html"
 
