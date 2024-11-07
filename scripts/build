@@ -64,7 +64,7 @@ rm "${build_folder}.tar.gz"
 #=================================================
 
 # Upload with Github Personal Token (local build, i.e. not running a Github Workflow)
-if [[ $gh_personal_token && -z $GITHUB_OUTPUT ]; then
+if [[ $gh_personal_token && -z $GITHUB_OUTPUT ]]; then
     
     echo "Trying to upload the release to https://github.com/${ynh_owner}/${ynh_repo}/releases/ ..."
 
