@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x 
 ynh_archive_name="myfile.v.2024.3.3-kodk3232.zip"
 if [[ $GITHUB_OUTPUT ]]; then echo "YHN_ARCHIVE=${ynh_archive_name}" >> $GITHUB_OUTPUT; fi
-
+set +x 
