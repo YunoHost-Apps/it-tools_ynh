@@ -22,6 +22,8 @@ jobs:
         run: | 
           chmod +x scripts/build
           ./scripts/build
+      - name: test
+        run: echo ${{ steps.build_release.outputs.YNH_ARCHIVE }}
       - name: Prepare draft release
         id: draft_release
         uses: softprops/action-gh-release@v2
