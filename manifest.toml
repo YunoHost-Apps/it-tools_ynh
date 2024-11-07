@@ -43,15 +43,19 @@ ram.runtime = "20M"
 
     [resources.sources]
 
-        [resources.sources.main]
+        [resources.sources.upstream]
         url = "https://github.com/CorentinTh/it-tools/releases/download/v2024.10.22-7ca5933/it-tools-2024.10.22-7ca5933.zip"
         sha256 = "eef276d675db6053bdc65cd8482a566785561c70eed5035a0e05b0e627b0989d"
-        format = "zip"
-        extract = true
-        in_subdir = true
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset = "it-tools-.*zip"
         autoupdate.version_regex = "^v(\\d{4}\\.\\d{1,2}\\.\\d{1,2})\\-[a-z0-9]{7}$"
+        
+        [resources.sources.ynh_build]
+        url = "https://github.com/YunoHost-Apps/it-tools_ynh/releases/download/v2024.10.22/it-tools_v2024.10.22-7ca5933_ynh.zip"
+        sha256 = "79d5daf1309065ce40ec899990e7764306fab1ef564d1c96a4911471186a252e"
+        format = "zip"
+        extract = true
+        in_subdir = true
 
     [resources.system_user]
 
