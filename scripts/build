@@ -5,7 +5,7 @@
 # Up to 1.5GB disk space and 4GB RAM. 
 #=================================================
 
-set -x
+if [[ -z $GITHUB_OUTPUT ]]; then set -x; fi 
 
 upstream_owner="CorentinTh"
 upstream_repo="it-tools"
@@ -39,7 +39,9 @@ pushd "$build_folder"
         if [ -f ~/.nvm/nvm.sh ]; then
             source ~/.nvm/nvm.sh install $build_node_version
         else
-            echo "Current Node.js version ($current_node_version) not matching building requirement ($build_node_version). Please install expected Node.js version or Node Version Manager (nvm)"
+            if [[ -z $GITHUB_OUTPUT ]]; then 
+                echo "Current Node.js version ($current_node_version) not matching building requirement ($build_node_version). Please install expected Node.js version or Node Version Manager (nvm)"; 
+            fi
         fi
     fi
 
@@ -140,7 +142,10 @@ if [[ $gh_personal_token ]]; then
     exit 0
 
 else
-    if [[ $GITHUB_OUTPUT ]]; then echo "YHN_ARCHIVE=${ynh_archive_name}" >> $GITHUB_OUTPUT; fi
-    echo "Build completed but not uploaded - missing Github Token"
-    set +x 
+    if [[ $GITHUB_OUTPUT ]]; then 
+        echo "YHN_ARCHIVE=${ynh_archive_name}" >> $GITHUB_OUTPUT; 
+    else
+        echo "Build completed but not uploaded - missing Github Token"
+        set +x
+    fi 
 fi
