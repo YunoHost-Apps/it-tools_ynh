@@ -11,8 +11,8 @@ jobs:
       - name: Parse data from PR
         id: pr_data
         run: |
-          echo "VERSION=0.0.0" >> $GITHUB_OUTPUT
-          echo "URL=https://my-test-changelog.tld" >> $GITHUB_OUTPUT
+          echo "VERSION=${${{ github.event.pull_request.title }}#Upgrade to v}" >> $GITHUB_OUTPUT
+          echo "URL=$(${{github.event.pull_request.body}} | grep -o 'http[s]\?://[^ ]\+' | head -1)" >> $GITHUB_OUTPUT
       - name: Checkout repo
         uses: actions/checkout@v4
       - name: Setup Node.js
@@ -24,7 +24,6 @@ jobs:
         run: | 
           chmod +x scripts/build
           ./scripts/build
-          echo "YNH_ARCHIVE=${ynh_archive_name}" >> $GITHUB_OUTPUT 
       - name: Prepare draft release
         id: draft_release
         uses: softprops/action-gh-release@v2
@@ -44,5 +43,3 @@ jobs:
             'Upstream upgrade is now built for YNH and ready to be released in the current repository: ${{ steps.draft_release.outputs.url }}
              Make sure the release is published before merging this PR.'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-

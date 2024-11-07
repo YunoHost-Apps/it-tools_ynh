@@ -50,7 +50,7 @@ pushd "$build_folder"
     # Package
     mv "dist" "${ynh_repo}"
     zip -r $ynh_archive_name "${ynh_repo}"
-    mv $ynh_archive_name "../${ynh_archive_name}.zip"
+    mv $ynh_archive_name "../${ynh_archive_name}"
 popd
 
 #=================================================
@@ -58,6 +58,13 @@ popd
 #=================================================
 rm -r "${build_folder}"
 rm "${build_folder}.tar.gz"
+
+#=================================================
+# (GH-WORKFLOW ONLY) EXPORT BUILT PACKAGE FILEPATH
+#=================================================
+if [ -v $GITHUB_OUTPUT ]; then 
+    echo "YHN_ARCHIVE=$(realpath $ynh_archive_name)" >> $GITHUB_OUPUT
+fi
 
 #=================================================
 # UPLOAD RELEASE - LOCAL BUILD ONLY
