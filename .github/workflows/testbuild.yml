@@ -1,5 +1,7 @@
 name: ynh-build-on-upstream-update
-on: workflow_call
+on:
+  push:
+    branches: [ "testing" ]
 jobs: 
   ynh-app-release:
     runs-on: ubuntu-latest
