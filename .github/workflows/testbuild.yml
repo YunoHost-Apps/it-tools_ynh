@@ -21,7 +21,7 @@ jobs:
         id: build_release
         run: | 
           chmod +x scripts/build
-          output=$(./scripts/build)
+          ./scripts/build
       - name: Prepare draft release
         id: draft_release
         uses: softprops/action-gh-release@v2
