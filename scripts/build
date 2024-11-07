@@ -62,7 +62,8 @@ rm "${build_folder}.tar.gz"
 #=================================================
 # (GH-WORKFLOW ONLY) EXPORT BUILT PACKAGE FILEPATH
 #=================================================
-if [ -v $GITHUB_OUTPUT ]; then 
+if [ -v $GITHUB_OUTPUT ]; then
+    echo 'test'
     echo "YHN_ARCHIVE=$(realpath $ynh_archive_name)" >> $GITHUB_OUPUT
     echo $GITHUB_OUPUT
 fi
