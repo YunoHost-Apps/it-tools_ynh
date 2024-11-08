@@ -12,10 +12,10 @@ ynh_setup_source --dest_dir="$install_dir" --source_id="ynh_build"
 
 #Prepare $newpath for string replacement (empty if $path is root or $path if subdir is defined)
 newpath=""
-if [[ ${#path} > 1 ]]; then newpath=$path; fi
+if [[ $path != '/' ]]; then newpath=$path; fi
 
 # Replace path placeholder recursively in all files of the app folder
-grep -rli '/__YNH_SUBDIR_PATH__' $install_dir/* | xargs sed -i "s@/__YNH_SUBDIR_PATH__@/$newpath@g" 
+grep -rli '/__YNH_SUBDIR_PATH__' $install_dir/* | xargs sed -i "s@/__YNH_SUBDIR_PATH__@$newpath@g"
 
 # Hide big buy coffee button
 main_css=$(grep -o "stylesheet\" href=\"${newpath}/assets/.*\.css" "$install_dir/index.html") # e.g.: index-ac305cd5.css
