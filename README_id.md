@@ -18,7 +18,7 @@ Ini TIDAK boleh diedit dengan tangan.
 
 Useful online tools for developers and people working in IT.
 
-**Versi terkirim:** 2024.5.13~ynh1
+**Versi terkirim:** 2024.10.22~ynh1
 
 **Demo:** <https://it-tools.tech>
 

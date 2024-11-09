@@ -5,7 +5,7 @@ name = "IT Tools"
 description.en = "Collection of handy online tools for developers"
 description.fr = "Collection d'outils pratiques en ligne pour les développeurs"
 
-version = "2024.5.13~ynh1"
+version = "2024.10.22~ynh1"
 
 maintainers = ["oleole39"]
 
@@ -43,15 +43,19 @@ ram.runtime = "20M"
 
     [resources.sources]
 
-        [resources.sources.main]
-        url = "https://github.com/CorentinTh/it-tools/releases/download/v2024.5.13-a0bc346/it-tools-2024.5.13-a0bc346.zip"
-        sha256 = "9ea712c7fec17663ad89bfeaf976477b610d0b9e1d713a6056c15069ac926493"
-        format = "zip"
-        extract = true
-        in_subdir = true
+        [resources.sources.upstream]
+        url = "https://github.com/CorentinTh/it-tools/releases/download/v2024.10.22-7ca5933/it-tools-2024.10.22-7ca5933.zip"
+        sha256 = "eef276d675db6053bdc65cd8482a566785561c70eed5035a0e05b0e627b0989d"
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset = "it-tools-.*zip"
         autoupdate.version_regex = "^v(\\d{4}\\.\\d{1,2}\\.\\d{1,2})\\-[a-z0-9]{7}$"
+        
+        [resources.sources.ynh_build]
+        url = "https://github.com/YunoHost-Apps/it-tools_ynh/releases/download/v2024.10.22/it-tools_v2024.10.22-7ca5933_ynh.zip"
+        sha256 = "79d5daf1309065ce40ec899990e7764306fab1ef564d1c96a4911471186a252e"
+        format = "zip"
+        extract = true
+        in_subdir = true
 
     [resources.system_user]
 
