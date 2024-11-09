@@ -74,7 +74,7 @@ if [[ $gh_personal_token && -z $GITHUB_OUTPUT ]]; then
     then
         ## Make a draft release json with a markdown body
         release='"tag_name": "'$last_upstream_version'", "target_commitish": "master", "name": "'$last_upstream_version'", '
-        body="IT-Tools prebuilt archive for it-tools_ynh\\n=========\\nPlease refer to main IT-Tools project for the change : https://github.com/$upstream_owner/$upstream_repo/releases\\n\\nSha256sum : $sha256sumarchive"
+        body="${upstream_repo^} prebuilt archive for ${ynh_repo}\\n=========\\nPlease refer to upstream ${upstream_repo^} project for the change : https://github.com/$upstream_owner/$upstream_repo/releases\\n\\nSha256sum : $sha256sumarchive"
         body=\"$body\"
         body='"body": '$body', '
         release=$release$body
