@@ -17,13 +17,8 @@ if [[ $path != '/' ]]; then newpath=$path; fi
 # Replace path placeholder recursively in all files of the app folder
 grep -rli '/__YNH_SUBDIR_PATH__' $install_dir/* | xargs sed -i "s@/__YNH_SUBDIR_PATH__@$newpath@g"
 
-# Hide big buy coffee button
-main_css=$(grep -o "stylesheet\" href=\"${newpath}/assets/.*\.css" "$install_dir/index.html" | xargs basename) # e.g.: index-ac305cd5.css
-sed -Ei 's/(\.support-button[^]]*\]\{[^}]*)/\1;display:none/' "$install_dir/assets/$main_css"
-
 # Replace official app domain with current YNH instance's    
-ynh_replace --match="https://it-tools.tech" --replace="https://$domain$path" --file="$install_dir/index.html"
-
+ynh_replace --match="https://sharevb-it-tools.vercel.app" --replace="https://$domain$path" --file="$install_dir/index.html"
 
 #=================================================
 # SYSTEM CONFIGURATION
