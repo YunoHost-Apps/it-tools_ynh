@@ -10,8 +10,8 @@ It shall NOT be edited by hand.
 
 Collection of handy online tools for developers
 
-[![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://it-tools.tech)
-[![Version: 2024.10.22~ynh1](https://img.shields.io/badge/Version-2024.10.22~ynh1-rgba(0,150,0,1)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/it-tools/)
+[![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://sharevb-it-tools.vercel.app)
+[![Version: 2025.04.21~ynh1](https://img.shields.io/badge/Version-2025.04.21~ynh1-rgba(0,150,0,1)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/it-tools/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/it-tools"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
@@ -22,7 +22,7 @@ Collection of handy online tools for developers
 
 [![Automatic tests level](https://apps.yunohost.org/badge/cilevel/it-tools)](https://ci-apps.yunohost.org/ci/apps/it-tools/)
 
-🛠️ Upstream IT Tools repository: <https://github.com/CorentinTh/it-tools>
+🛠️ Upstream IT Tools repository: <https://github.com/sharevb/it-tools>
 
 Pull request are welcome and should target the [`testing` branch](https://github.com/YunoHost-Apps/it-tools_ynh/tree/testing).
 

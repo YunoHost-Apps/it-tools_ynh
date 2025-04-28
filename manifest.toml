@@ -5,14 +5,14 @@ name = "IT Tools"
 description.en = "Collection of handy online tools for developers"
 description.fr = "Collection d'outils pratiques en ligne pour les développeurs"
 
-version = "2024.10.22~ynh1"
+version = "2025.04.21~ynh1"
 
 maintainers = ["oleole39"]
 
 [upstream]
-license = "AGPL-3.0-only"
-demo = "https://it-tools.tech"
-code = "https://github.com/CorentinTh/it-tools"
+license = "GPL-3.0-only"
+demo = "https://sharevb-it-tools.vercel.app"
+code = "https://github.com/sharevb/it-tools"
 fund = "https://www.buymeacoffee.com/cthmsst"
 
 [integration]
@@ -22,7 +22,7 @@ architectures = "all"
 multi_instance = true
 ldap = false
 sso = false
-disk = "20M"
+disk = "100M"
 ram.build = "20M"
 ram.runtime = "20M"
 
@@ -44,15 +44,15 @@ ram.runtime = "20M"
     [resources.sources]
 
         [resources.sources.upstream]
-        url = "https://github.com/CorentinTh/it-tools/releases/download/v2024.10.22-7ca5933/it-tools-2024.10.22-7ca5933.zip"
-        sha256 = "eef276d675db6053bdc65cd8482a566785561c70eed5035a0e05b0e627b0989d"
-        autoupdate.strategy = "latest_github_release"
-        autoupdate.asset = "it-tools-.*zip"
-        autoupdate.version_regex = "^v(\\d{4}\\.\\d{1,2}\\.\\d{1,2})\\-[a-z0-9]{7}$"
+        # This is not used as we are using git clone. It's only here for autoupdate.
+        url = "https://github.com/sharevb/it-tools/archive/9d0786f15e3bd0e88429415bd649b23f5e873825.tar.gz"
+        sha256 = "cd908b01a1839d463b3f266fc08e13798bacdec88d68cbb2ff70329ac41d3fa2"
+        prefetch = false
+        autoupdate.strategy = "latest_github_commit"
         
         [resources.sources.ynh_build]
-        url = "https://github.com/YunoHost-Apps/it-tools_ynh/releases/download/v2024.10.22/it-tools_v2024.10.22-7ca5933_ynh.zip"
-        sha256 = "79d5daf1309065ce40ec899990e7764306fab1ef564d1c96a4911471186a252e"
+        url = "https://github.com/Yunohost-Apps/it-tools_ynh/releases/download/v2025.04.21-9d0786f1/it-tools_v2025.04.21-9d0786f1_ynh.zip"
+        sha256 = "30e3f3a0489868a27f5d86ea1c8fbf8a1f66e964378a5814fdbc3393df39f934"
         format = "zip"
         extract = true
         in_subdir = true
@@ -66,3 +66,6 @@ ram.runtime = "20M"
     main.url = "/"
 
     [resources.ports]
+
+    [resources.apt]
+    packages = "python3, make, g++"
