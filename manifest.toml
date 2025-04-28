@@ -10,9 +10,9 @@ version = "2024.10.22~ynh1"
 maintainers = ["oleole39"]
 
 [upstream]
-license = "AGPL-3.0-only"
-demo = "https://it-tools.tech"
-code = "https://github.com/CorentinTh/it-tools"
+license = "GPL-3.0-only"
+demo = "https://sharevb-it-tools.vercel.app"
+code = "https://github.com/sharevb/it-tools"
 fund = "https://www.buymeacoffee.com/cthmsst"
 
 [integration]
@@ -44,11 +44,11 @@ ram.runtime = "20M"
     [resources.sources]
 
         [resources.sources.upstream]
-        url = "https://github.com/CorentinTh/it-tools/releases/download/v2024.10.22-7ca5933/it-tools-2024.10.22-7ca5933.zip"
-        sha256 = "eef276d675db6053bdc65cd8482a566785561c70eed5035a0e05b0e627b0989d"
-        autoupdate.strategy = "latest_github_release"
-        autoupdate.asset = "it-tools-.*zip"
-        autoupdate.version_regex = "^v(\\d{4}\\.\\d{1,2}\\.\\d{1,2})\\-[a-z0-9]{7}$"
+        # This is not used as we are using git clone. It's only here for autoupdate.
+        url = "https://github.com/sharevb/it-tools/archive/9d0786f15e3bd0e88429415bd649b23f5e873825.tar.gz"
+        sha256 = "cd908b01a1839d463b3f266fc08e13798bacdec88d68cbb2ff70329ac41d3fa2"
+        prefetch = false
+        autoupdate.strategy = "latest_github_commit"
         
         [resources.sources.ynh_build]
         url = "https://github.com/YunoHost-Apps/it-tools_ynh/releases/download/v2024.10.22/it-tools_v2024.10.22-7ca5933_ynh.zip"
@@ -66,3 +66,6 @@ ram.runtime = "20M"
     main.url = "/"
 
     [resources.ports]
+
+    [resources.apt]
+    packages = "python3, make, g++"
