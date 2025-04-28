@@ -1,22 +1,21 @@
-name: ynh-build-on-push-to-testing
+name: ynh-build-on-demand
 
 on:
-  push:
-    branches: [ "testing" ]
-    
+  workflow_dispatch
+
 jobs: 
   ynh-app-release:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          
+
       - name: Build release
         id: build_release
         run: | 
@@ -35,7 +34,7 @@ jobs:
           prerelease: false
           make_latest: true
           body: |
-            Version built for Yunohost using `scripts/build` and `.github/workflows/ynh-build-on-push-to-testing.yml` in order to split upstream website from the app and ensure sub-directory install compatibility.
+            Version built for Yunohost using `scripts/build` and `.github/workflows/ynh-build-on-demand.yml` in order to split upstream website from the app and ensure sub-directory install compatibility.
             ### Changelog
             Cf. upstream release note: ${{ steps.diff_url.outputs.YNH_RELEASE_DIFF_COMPARE_URL }}
 
