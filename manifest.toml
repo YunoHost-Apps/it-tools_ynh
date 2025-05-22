@@ -45,13 +45,13 @@ ram.runtime = "20M"
 
         [resources.sources.upstream]
         # This is not used as we are using git clone. It's only here for autoupdate.
-        url = "https://github.com/sharevb/it-tools/archive/f3d5ab82620991bf8ab19630cc1fe42588d200fc.tar.gz"
-        sha256 = "38ef9c95803c89955f2baacf5c5947c6dd8036a99d941b0bb6a38617856e1ae6"
+        url = "https://github.com/sharevb/it-tools/archive/48854592b0eabc5e36cbee2da345c6199db6742a.tar.gz"
+        sha256 = "4c500bb4ff01f4e40c82f802a9994b43e2c0be9e524ea3f82cbb2617b869cff3"
         prefetch = false
         autoupdate.strategy = "latest_github_commit"
         
         [resources.sources.ynh_build]
-        url = "https://github.com/Yunohost-Apps/it-tools_ynh/releases/download/v2025.05.17-48854592/it-tools_v2025.05.17-48854592_ynh.zip"
+        url = "https://github.com/YunoHost-Apps/it-tools_ynh/releases/download/v2025.05.17-48854592/it-tools_v2025.05.17-48854592_ynh.zip"
         sha256 = "59df11219b3c2dbcf0337092d46014274cdf73ae6fc6be8a53e3eeba81916b31"
         format = "zip"
         extract = true
