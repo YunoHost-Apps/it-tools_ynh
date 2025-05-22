@@ -15,7 +15,7 @@ newpath=""
 if [[ $path != '/' ]]; then newpath=$path; fi
 
 # Replace path placeholder recursively in all files of the app folder
-grep -rli '/__YNH_SUBDIR_PATH__' $install_dir/* | xargs sed -i "s@/__YNH_SUBDIR_PATH__@$newpath@g"
+grep -rli '/__YNH_SUBDIR_PATH__' $install_dir/* | xargs sed -i "s@/__YNH_SUBDIR_PATH__@$newpath/@g"
 
 # Replace official app domain with current YNH instance's    
 ynh_replace --match="https://sharevb-it-tools.vercel.app" --replace="https://$domain$path" --file="$install_dir/index.html"
