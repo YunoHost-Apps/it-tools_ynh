@@ -43,7 +43,7 @@ ram.runtime = "20M"
 
     [resources.sources]
 
-        [resources.sources.upstream]
+        [resources.sources.main]
         # This is not used as we are using git clone. It's only here for autoupdate.
         url = "https://github.com/sharevb/it-tools/archive/c9b448ce645ccd0e036c6c82f87e7b561883f31f.tar.gz"
         sha256 = "6bbdfd2957bae6f1fa0ab2171efe3b60c179d26daaa3478a92a5de4af5d59d99"
