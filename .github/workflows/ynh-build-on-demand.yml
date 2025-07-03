@@ -3,6 +3,9 @@ name: ynh-build-on-demand
 on:
   workflow_dispatch
 
+permissions:
+  contents: write
+
 jobs: 
   ynh-app-release:
     runs-on: ubuntu-latest
