@@ -7,6 +7,23 @@ upstream_source_url=$(ynh_read_manifest "resources.sources.main.url")
 index_page=$(basename -s .zip $upstream_source_url).html #this variable will also populate the template tag __INDEX_PAGE__ in nginx.conf
 
 #=================================================
+# CHANGE HARDCODED URLS IN APP FILES
+#=================================================
+
+# Prepare var for string replacement (empty if $path is root or $path if subdir is defined)
+old_path_2=""
+if [[ $old_path != '/' ]]; then old_path_2=$old_path; fi
+new_path_2=""
+if [[ $new_path != '/' ]]; then new_path_2=$new_path; fi
+
+# Replace old URLs recursively in all files of the app folder
+grep -rli "$old_path_2" $install_dir/* | xargs sed -i "$old_path_2@$new_path_2@g"
+
+# Replace official app domain with current YNH instance's
+ynh_replace --match="https://$old_domain$old_path_2" --replace="https://$new_domain$new_path_2" --file="$install_dir/index.html"
+
+
+#=================================================
 # MODIFY URL IN NGINX CONF
 #=================================================
 ynh_script_progression "Updating NGINX web server configuration..."
