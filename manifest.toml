@@ -52,7 +52,7 @@ ram.runtime = "20M"
         
         [resources.sources.ynh_build]
         url = "https://github.com/YunoHost-Apps/it-tools_ynh/releases/download/v2025.06.22-a12c43bf/it-tools_v2025.06.22-a12c43bf_ynh.zip"
-        sha256 = "e05ad8cd003626aa8555e03319dd2252b67f516ab2052108e9af28d74e005074"
+        sha256 = "cfcbbedd2a4127f4ecd71a2f37d39f8638c1fd3479906a72b296d7f99d3ee1e3"
         format = "zip"
         extract = true
         in_subdir = true
