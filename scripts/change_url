@@ -16,12 +16,12 @@ if [[ $old_path != '/' ]]; then old_path_2=$old_path; fi
 new_path_2=""
 if [[ $new_path != '/' ]]; then new_path_2=$new_path; fi
 
-# Replace old URLs recursively in all files of the app folder
-grep -rli "$old_path_2" $install_dir/* | xargs sed -i "s@$old_path_2@$new_path_2@g"
+# Replace base URL recursively in all files of the app folder
+match_regex="$old_domain$old_path_2"
+grep --extended-regexp --recursive --files-with-matches --ignore-case "$match_regex" $install_dir/* | xargs -d '\n' sed --regexp-extended --in-place "s@$match_regex@$new_domain$new_path_2@g"
 
 # Replace official app domain with current YNH instance's
 ynh_replace --match="https://$old_domain$old_path_2" --replace="https://$new_domain$new_path_2" --file="$install_dir/index.html"
-
 
 #=================================================
 # MODIFY URL IN NGINX CONF

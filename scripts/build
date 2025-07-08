@@ -38,7 +38,7 @@ function ynh_build_instructions {
     #=================================================
     # BUILD INSTRUCTIONS (REQUIRED)
     #=================================================
-    corepack enable pnpm && pnpm install && BASE_URL="/__YNH_SUBDIR_PATH__" pnpm build
+    corepack enable pnpm && pnpm install && BASE_URL="__YNH_DOMAIN____YNH_SUBDIR_PATH__" pnpm build
 }
 
 #=================================================
