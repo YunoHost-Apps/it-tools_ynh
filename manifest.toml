@@ -5,7 +5,7 @@ name = "IT Tools"
 description.en = "Collection of handy online tools for developers"
 description.fr = "Collection d'outils pratiques en ligne pour les développeurs"
 
-version = "2025.06.22~ynh1"
+version = "2025.07.06~ynh1"
 
 maintainers = ["oleole39"]
 
@@ -45,14 +45,14 @@ ram.runtime = "20M"
 
         [resources.sources.main]
         # This is not used as we are using git clone. It's only here for autoupdate.
-        url = "https://github.com/sharevb/it-tools/archive/a12c43bfaea1de650bb3acae1f4115f5fd3827d9.tar.gz"
-        sha256 = "de5909c41c580dae07ad0b7ffc2b20200f8e2d81f5d8fd23bb09b172a4b7c718"
+        url = "https://github.com/sharevb/it-tools/archive/752785389783f031c06fa7aba7c379ae4884aa4d.tar.gz"
+        sha256 = "97569bb8f04744f82e490075ce17324d5f4b4be68f3b768855b0886774a5c824"
         prefetch = false
         autoupdate.strategy = "latest_github_commit"
         
         [resources.sources.ynh_build]
         url = "https://github.com/YunoHost-Apps/it-tools_ynh/releases/download/v2025.06.22-a12c43bf/it-tools_v2025.06.22-a12c43bf_ynh.zip"
-        sha256 = "e05ad8cd003626aa8555e03319dd2252b67f516ab2052108e9af28d74e005074"
+        sha256 = "1501eb0b8992df2d26b341b4354aea0f3cc0cf9e67730752bd544040fe324f38"
         format = "zip"
         extract = true
         in_subdir = true
