@@ -8,7 +8,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Upgrading source files..."
 	
-ynh_setup_source --dest_dir="$install_dir" --source_id="ynh_build" --full_replace=1
+ynh_setup_source --dest_dir="$install_dir" --source_id="ynh_build" --full_replace=1 --keep="tools-filter.json home.custom.md"
 
 #Prepare $newpath for string replacement (empty if $path is root or $path if subdir is defined)
 newpath=""
