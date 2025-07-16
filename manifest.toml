@@ -5,7 +5,7 @@ name = "IT Tools"
 description.en = "Collection of handy online tools for developers"
 description.fr = "Collection d'outils pratiques en ligne pour les développeurs"
 
-version = "2025.07.13~ynh2"
+version = "2025.07.13~ynh3"
 
 maintainers = ["oleole39"]
 
@@ -64,8 +64,6 @@ ram.runtime = "20M"
 
     [resources.permissions]
     main.url = "/"
-
-    [resources.ports]
 
     [resources.apt]
     packages = "python3, make, g++"
