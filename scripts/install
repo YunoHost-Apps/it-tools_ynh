@@ -15,7 +15,7 @@ newpath=""
 if [[ $path != '/' ]]; then newpath=$path; fi
 
 # Replace URL placeholder with $path only in specific cases
-index_js_path="$(grep '<script type=\"module\" crossorigin src=\"./assets/index-*.js\"></script>' $install_dir/index.html)"
+index_js_path=$(grep '<script type="module" crossorigin src="./assets/index-*.js"></script>' $install_dir/index.html)
 index_js_path="${index_js_path#<script type=\"module\" crossorigin src=\"./}"
 index_js_path="${index_js_path%\"></script>}" #e.g. assets/index-86994da2.js
 sed --regexp-extended --in-place "s@([a-zA-Z0-9^=]*)=\"modulepreload\",([a-zA-Z0-9^=]*)=function\(([a-zA-Z0-9^=]*)\){return\"/__YNH_DOMAIN____YNH_SUBDIR_PATH__/\"@\1=\"modulepreload\",\2=function\(\3\){return\"/$path/\"@g" $install_dir/$index_js_path
