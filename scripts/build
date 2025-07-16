@@ -38,7 +38,7 @@ function ynh_build_instructions {
     #=================================================
     # BUILD INSTRUCTIONS (REQUIRED)
     #=================================================
-    corepack enable pnpm && pnpm install && BASE_URL="/__YNH_SUBDIR_PATH__" pnpm build
+    corepack enable pnpm && pnpm install && BASE_URL="__YNH_DOMAIN____YNH_SUBDIR_PATH__" pnpm build
 }
 
 #=================================================
@@ -76,8 +76,9 @@ storage_start=$(used_disk_space_in_gb)
 ynh_manually_defined_package_variables
 
 # Parse manifest automatically
-download_manifest_main=$(curl --silent --show-error --location --write-out '%{http_code}' --output ynh-manifest.toml "https://raw.githubusercontent.com/${ynh_owner}/${ynh_repo}/refs/heads/main/manifest.toml")
-if [[ "$download_manifest_main" = 404 ]]; then 
+branch_name="${1:-main}" #can be passed to the script as a positional argument or default to main/master branch
+download_branch_manifest=$(curl --silent --show-error --location --write-out '%{http_code}' --output ynh-manifest.toml "https://raw.githubusercontent.com/${ynh_owner}/${ynh_repo}/refs/heads/${branch_name}/manifest.toml")
+if [[ "$download_branch_manifest" = 404 ]]; then 
     # Yunohost's legacy repos have a 'master' branch instead of a 'main' branch
     download_manifest_master=$(curl --silent --show-error --location --write-out '%{http_code}' --output ynh-manifest.toml "https://raw.githubusercontent.com/${ynh_owner}/${ynh_repo}/refs/heads/master/manifest.toml")
 fi
