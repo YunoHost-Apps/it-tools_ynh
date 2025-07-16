@@ -18,7 +18,7 @@ if [[ $path != '/' ]]; then newpath=$path; fi
 index_js_path="$(sed --regexp-extended --silent 's@\s*<script type="module" crossorigin src=".*/(assets/index-[^.]*\.js)\"></script>@\1@p' $install_dir/index.html)" #e.g. assets/index-86994da2.js
 sed --regexp-extended --in-place "s@([a-zA-Z0-9^=]*)=\"modulepreload\",([	a-zA-Z0-9^=]*)=function\(([a-zA-Z0-9^=]*)\)\{return\"/__YNH_DOMAIN____YNH_SUBDIR_PATH__/\"@\1=\"modulepreload\",\2=function\(\3\)\{return\"$newpath/\"@g" $install_dir/$index_js_path
 sed --regexp-extended --in-place "s@loadEnv\(\{BASE_URL:\"/__YNH_DOMAIN____YNH_SUBDIR_PATH__@loadEnv({BASE_URL:\"$path/@g" $install_dir/$index_js_path
-sed --regexp-extended --in-place "s@([a-zA-Z0-9^=]*)=\"/__YNH_DOMAIN____YNH_SUBDIR_PATH__\";([a-zA-Z0-9^.]*).defaults(\{fontPath:`$\{([a-zA-Z0-9^}]*)\}figlet-fonts@\1=\"https://$domain$newpath/\";\2.defaults(\{fontPath:`$\{\1\}figlet-fonts@g" $install_dir/assets/ascii-text-drawer-*.js
+sed --regexp-extended --in-place "s@,([^=]*)=\"/__YNH_DOMAIN____YNH_SUBDIR_PATH__\";([^.]*)\.defaults\(\{fontPath:\`\\$\{([^}]*)\}figlet-fonts@\1=\"https://$domain$newpath/\";\2.defaults({fontPath:\`\\$\{\1\}figlet-fonts@g" $install_dir/assets/ascii-text-drawer-*.js
 sed --regexp-extended --in-place "s@\"/age_wasm/wasm_exec.js@\"/$newpath/age_wasm_wasm_exec.js}/@g" "$install_dir/*"
 
 # Replace URL placeholder with absolute URL for all files of the app folder
