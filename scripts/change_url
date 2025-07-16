@@ -19,7 +19,7 @@ if [[ $new_path != '/' ]]; then new_path_2=$new_path; fi
 # Replace URL placeholder with $path only in specific cases
 index_js_path="$(sed --regexp-extended --silent 's@\s*<script type="module" crossorigin src=".*/(assets/index-[^.]*\.js)\"></script>@\1@p' $install_dir/index.html)" #e.g. assets/index-86994da2.js
 sed --regexp-extended --in-place "s@([a-zA-Z0-9^=]*)=\"modulepreload\",([a-zA-Z0-9^=]*)=function\(([a-zA-Z0-9^=]*)\)\{return\"$old_path_2/\"@\1=\"modulepreload\",\2=function\(\3\)\{return\"$new_path_2/\"@g" $install_dir/$index_js_path
-sed --regexp-extended --in-place "s@loadEnv\(\{BASE_URL:\"old_path_2/@loadEnv({BASE_URL:\"$new_path_2/@g" $install_dir/$index_js_path
+sed --regexp-extended --in-place "s@loadEnv\(\{BASE_URL:\"$old_path_2/@loadEnv({BASE_URL:\"$new_path_2/@g" $install_dir/$index_js_path
 
 # Replace base URL recursively in all files of the app folder
 match_regex="$old_domain$old_path_2"
