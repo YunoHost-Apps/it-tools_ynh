@@ -11,12 +11,16 @@ It shall NOT be edited by hand.
 Collection of handy online tools for developers
 
 [![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://sharevb-it-tools.vercel.app)
-[![Version: 2025.07.13~ynh3](https://img.shields.io/badge/Version-2025.07.13~ynh3-rgba(0,150,0,1)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/it-tools/)
+[![Version: 2025.07.24~ynh1](https://img.shields.io/badge/Version-2025.07.24~ynh1-rgba(0,150,0,1)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/it-tools/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/it-tools"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
 <a href="https://github.com/YunoHost-Apps/it-tools_ynh/issues"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_report_an_issue.svg"/></a>
 </div>
+
+
+## Screenshots
+![Screenshot of IT Tools](./doc/screenshots/it-tools_ynh.png)
 
 ## 📦 Developer info
 
