@@ -5,7 +5,7 @@ name = "IT Tools"
 description.en = "Collection of handy online tools for developers"
 description.fr = "Collection d'outils pratiques en ligne pour les développeurs"
 
-version = "2025.08.01~ynh1"
+version = "2025.08.06~ynh1"
 
 maintainers = ["oleole39"]
 
@@ -45,8 +45,8 @@ ram.runtime = "20M"
 
         [resources.sources.main]
         # This is not used as we are using git clone. It's only here for autoupdate.
-        url = "https://github.com/sharevb/it-tools/archive/0325b11746509b25c746f8d948e543259a0f89d1.tar.gz"
-        sha256 = "14fbd9268f014e42a881caf71b05c79a426b9b5b78fed14fef112f050fc24d72"
+        url = "https://github.com/sharevb/it-tools/archive/11e2ac8130333c6f8404b93c8dc8e407e6cf571e.tar.gz"
+        sha256 = "3921793cef0c3404e9e70875d43986b4ed1b4b864d0fecba371fa3a51f56c7e0"
         prefetch = false
         autoupdate.strategy = "latest_github_commit"
         
