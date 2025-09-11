@@ -16,12 +16,14 @@ code = "https://github.com/sharevb/it-tools"
 fund = "https://www.buymeacoffee.com/cthmsst"
 
 [integration]
-yunohost = ">= 11.2.30"
+yunohost = ">= 12.1.17"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
+
 ldap = false
 sso = false
+
 disk = "100M"
 ram.build = "20M"
 ram.runtime = "20M"

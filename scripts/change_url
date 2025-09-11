@@ -1,6 +1,5 @@
 #!/bin/bash
 
-source _common.sh
 source /usr/share/yunohost/helpers
 
 upstream_source_url=$(ynh_read_manifest "resources.sources.main.url")
