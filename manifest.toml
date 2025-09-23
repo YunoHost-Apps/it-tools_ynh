@@ -5,7 +5,7 @@ name = "IT Tools"
 description.en = "Collection of handy online tools for developers"
 description.fr = "Collection d'outils pratiques en ligne pour les développeurs"
 
-version = "2025.08.24~ynh2"
+version = "2025.09.21~ynh1"
 
 maintainers = ["oleole39"]
 
@@ -16,12 +16,14 @@ code = "https://github.com/sharevb/it-tools"
 fund = "https://www.buymeacoffee.com/cthmsst"
 
 [integration]
-yunohost = ">= 11.2.30"
+yunohost = ">= 12.1.17"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
+
 ldap = false
 sso = false
+
 disk = "100M"
 ram.build = "20M"
 ram.runtime = "20M"
@@ -45,8 +47,8 @@ ram.runtime = "20M"
 
         [resources.sources.main]
         # This is not used as we are using git clone. It's only here for autoupdate.
-        url = "https://github.com/sharevb/it-tools/archive/34373f1a3fb3a624a4fe215651202f4103eea3dc.tar.gz"
-        sha256 = "dcca626c696f0d4e37cf7ee01c31cd74ad3c77b7c286de240be4c079a8d80f57"
+        url = "https://github.com/sharevb/it-tools/archive/bfb4a45d9c21a0e36f8b3feea3f56962ba02d6fd.tar.gz"
+        sha256 = "e1b948e26538308dc5628ebb28b154b33bf34713821d12f3efb7a96388a4827b"
         prefetch = false
         autoupdate.strategy = "latest_github_commit"
         
