@@ -11,7 +11,7 @@ It shall NOT be edited by hand.
 Collection of handy online tools for developers
 
 [![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://sharevb-it-tools.vercel.app)
-[![Version: 2025.09.21~ynh1](https://img.shields.io/badge/Version-2025.09.21~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/it-tools/)
+[![Version: 2025.10.05~ynh1](https://img.shields.io/badge/Version-2025.10.05~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/it-tools/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/it-tools"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
