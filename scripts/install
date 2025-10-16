@@ -19,9 +19,10 @@ sed --regexp-extended --in-place "s@([a-zA-Z0-9^=]*)=\"modulepreload\",([a-zA-Z0
 sed --regexp-extended --in-place "s@loadEnv\(\{BASE_URL:\"/__YNH_DOMAIN____YNH_SUBDIR_PATH__@loadEnv({BASE_URL:\"$path/@g" $install_dir/$index_js_path
 
 # Various specific path fixes
-sed --regexp-extended --in-place "s@,([^=]*)=\"/__YNH_DOMAIN____YNH_SUBDIR_PATH__\";([^.]*)\.defaults\(\{fontPath:\`\\$\{([^}]*)\}figlet-fonts@\1=\"https://$domain$newpath/\";\2.defaults({fontPath:\`\\$\{\1\}figlet-fonts@g" $install_dir/assets/ascii-text-drawer-*.js
+sed --regexp-extended --in-place "s@([^,=]*)=\"/__YNH_DOMAIN____YNH_SUBDIR_PATH__\";([^.]*)\.defaults\(\{fontPath:\`\\$\{([^}]*)\}figlet-fonts@\1=\"https://$domain$newpath/\";\2.defaults({fontPath:\`\\$\{\1\}figlet-fonts@g" $install_dir/assets/ascii-text-drawer-*.js
 grep --extended-regexp --recursive --files-with-matches --ignore-case "/age_wasm/wasm_exec.js" | xargs -d '\n' sed --regexp-extended --in-place "s@\"/age_wasm/wasm_exec.js@\"/$newpath/age_wasm_wasm_exec.js}/@g"
 ynh_replace --match="tools-filter.json" --replace="/tools-filter.json" --file="$install_dir/$index_js_path"
+ynh_replace --match="tools-settings.json" --replace="/tools-settings.json" --file="$install_dir/$index_js_path"
 ynh_replace --match="home.custom.md" --replace="/home.custom.md" --file="$install_dir/$index_js_path"
 ynh_replace --match="https://sharevb-it-tools.vercel.app" --replace="https://$domain$path" --file="$install_dir/index.html"
 
