@@ -53,8 +53,8 @@ ram.runtime = "20M"
         autoupdate.strategy = "latest_github_commit"
         
         [resources.sources.ynh_build]
-        url = "https://github.com/YunoHost-Apps/it-tools_ynh/releases/download/v2025.10.19-c1b06940/it-tools_v2025.10.19-c1b06940_ynh.zip"
-        sha256 = "7bf9f3cc5b8e435761ae697313077701fc8815139ac54802945626485f14476b"
+        url = "https://github.com/YunoHost-Apps/it-tools_ynh/releases/download/v2025.11.16-c7d77e1b/it-tools_v2025.11.16-c7d77e1b_ynh.zip"
+        sha256 = "19496646e595adf253f4e3230601fa07c9914b9b2d8f94178ed01bae27d1e5ee"
         format = "zip"
         extract = true
         in_subdir = true
