@@ -5,7 +5,7 @@ name = "IT Tools"
 description.en = "Collection of handy online tools for developers"
 description.fr = "Collection d'outils pratiques en ligne pour les développeurs"
 
-version = "2025.11.23~ynh1"
+version = "2025.11.23~ynh2"
 
 maintainers = ["oleole39"]
 
