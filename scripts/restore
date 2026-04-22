@@ -16,6 +16,11 @@ ynh_script_progression "Restoring system configurations related to $app..."
 
 ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
 
+ynh_restore "/etc/systemd/system/$app-puppeteer.service"
+systemctl enable "$app-puppeteer.service" --quiet
+
+yunohost service add "$app" --description="IT-Tools Puppeteer server for HTML to PDF conversion" --log="/var/log/$app/$app-puppeteer.log"
+
 #=================================================
 # RELOAD NGINX
 #=================================================

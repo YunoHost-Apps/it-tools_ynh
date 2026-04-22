@@ -6,7 +6,7 @@ source /usr/share/yunohost/helpers
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Upgrading source files..."
-	
+
 ynh_setup_source --dest_dir="$install_dir" --source_id="ynh_build" --full_replace=1 --keep="tools-filter.json home.custom.md"
 
 #Prepare $newpath for string replacement (empty if $path is root or $path if subdir is defined)
@@ -19,8 +19,7 @@ sed --regexp-extended --in-place "s@([a-zA-Z0-9^=]*)=\"modulepreload\",([a-zA-Z0
 sed --regexp-extended --in-place "s@loadEnv\(\{BASE_URL:\"/__YNH_DOMAIN____YNH_SUBDIR_PATH__@loadEnv({BASE_URL:\"$path/@g" $install_dir/$index_js_path
 
 # Various specific path fixes
-sed --regexp-extended --in-place "s@([^,=]*)=\"/__YNH_DOMAIN____YNH_SUBDIR_PATH__\";([^.]*)\.defaults\(\{fontPath:\`\\$\{([^}]*)\}figlet-fonts@\1=\"https://$domain$newpath/\";\2.defaults({fontPath:\`\\$\{\1\}figlet-fonts@g" $install_dir/assets/ascii-text-drawer-*.js
-grep --extended-regexp --recursive --files-with-matches --ignore-case "/age_wasm/wasm_exec.js" | xargs -d '\n' sed --regexp-extended --in-place "s@\"/age_wasm/wasm_exec.js@\"/$newpath/age_wasm_wasm_exec.js}/@g"
+ynh_replace --match="age-wasm/wasm_exec.js" --replace="/age-wasm\/wasm_exec.js/" --file="assets/age-crypto-*"
 ynh_replace --match="tools-filter.json" --replace="/tools-filter.json" --file="$install_dir/$index_js_path"
 ynh_replace --match="tools-settings.json" --replace="/tools-settings.json" --file="$install_dir/$index_js_path"
 ynh_replace --match="external-tools.json" --replace="/external-tools.json" --file="$install_dir/$index_js_path"
@@ -29,8 +28,19 @@ ynh_replace --match="https://sharevb-it-tools.vercel.app" --replace="https://$do
 
 # Replace URL placeholder with absolute URL for all files of the app folder
 match_regex="/?__YNH_DOMAIN____YNH_SUBDIR_PATH__"
-sed --regexp-extended --in-place "s@$match_regex@https://$domain$newpath/@g" $install_dir/manifest.webmanifest
 grep --extended-regexp --recursive --files-with-matches --ignore-case "$match_regex" $install_dir/* | xargs -d '\n' sed --regexp-extended --in-place "s@$match_regex@https://$domain$newpath@g"
+
+#=================================================
+# REINSTALL DEPENDENCIES 
+#=================================================
+ynh_script_progression "Reinstall dependencies..."
+
+# Puppeteer HTML to PDF server
+ynh_setup_source --dest_dir="$install_dir/puppeteer-htmltopdf" --source_id="puppeteer-htmltopdf"
+pushd "$install_dir/puppeteer-htmltopdf"
+    ynh_hide_warnings ynh_exec_as_app npm install 
+popd
+ynh_config_add --template=".env" --destination="$install_dir/puppeteer-htmltopdf/.env"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -38,6 +48,13 @@ grep --extended-regexp --recursive --files-with-matches --ignore-case "$match_re
 ynh_script_progression "Upgrading system configurations related to $app..."
 
 ynh_config_add_nginx
+
+# Create a dedicated systemd config
+ynh_config_add_systemd
+yunohost service add "$app-puppeteer" --description="IT-Tools Puppeteer server for HTML to PDF conversion" --log="/var/log/$app/$app-puppeteer.log"
+
+# Use logrotate to manage application logfile(s)
+ynh_config_add_logrotate
 
 #=================================================
 # END OF SCRIPT
