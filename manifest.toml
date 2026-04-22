@@ -41,11 +41,20 @@ ram.runtime = "20M"
     type = "group"
     default = "visitors" 
 
+    [install.enable_htmltopdf_server]
+    type = "boolean"
+    default = "true"
+    ask.en = "Enable processing server for 'HTML to PDF' tool ? (This can later be changed)"
+    ask.fr = "Activer la fonctionnalité côté serveur pour l'outil 'HTML to PDF' ? (Cela pourra être changé plus tard)"
+
     [install.init_puppeteer-htmltopdf_permission]
     type = "group"
     default = "all_users"
+    ask.en = "Who should have access to the processing server ? (This can later be changed)"
+    ask.fr = "Qui peut accéder à la fonctionnalité côté serveur ? (Cela pourra être changé plus tard)"
     help.en = "Specific permission to access to server-side processing for the tool 'HTML to PDF'"
     help.fr = "Permission spécifique pour accéder au processus côté serveur de l'outil 'HTML to PDF'"
+    visible = "enable_htmltopdf_server"
 
 [resources]
 
