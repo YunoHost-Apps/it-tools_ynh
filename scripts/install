@@ -19,7 +19,7 @@ sed --regexp-extended --in-place "s@([a-zA-Z0-9^=]*)=\"modulepreload\",([a-zA-Z0
 sed --regexp-extended --in-place "s@loadEnv\(\{BASE_URL:\"/__YNH_DOMAIN____YNH_SUBDIR_PATH__@loadEnv({BASE_URL:\"$path/@g" $install_dir/$index_js_path
 
 # Various specific path fixes
-ynh_replace --match="age-wasm/wasm_exec.js" --replace="/age-wasm\/wasm_exec.js/" --file="$install_dir/assets/age-crypto-.*"
+sed --in-place 's/age-wasm\/wasm_exec\.js/\/age-wasm\/wasm_exec.js/g' "$install_dir/assets/age-crypto-.*"
 ynh_replace --match="tools-filter.json" --replace="/tools-filter.json" --file="$install_dir/$index_js_path"
 ynh_replace --match="tools-settings.json" --replace="/tools-settings.json" --file="$install_dir/$index_js_path"
 ynh_replace --match="external-tools.json" --replace="/external-tools.json" --file="$install_dir/$index_js_path"
