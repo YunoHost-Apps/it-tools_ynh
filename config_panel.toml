@@ -1,0 +1,20 @@
+#:schema https://github.com/YunoHost/apps/raw/master/schemas/config_panel.v1.schema.json
+
+version = "1.0"
+
+[main]
+name = "Configuration"
+
+    [main.configuration]
+    name = ""
+    optional = false
+
+        [main.configuration.htmltopdf_server]
+        ask.en = "HTML to PDF conversion server"
+        ask.fr = "Serveur de conversion HTML vers PDF"
+        type = "select"
+        choices = ["Public access", "", "auto"]
+        default = "en"
+        help.en = "If set to `auto`, the app will attempt to use the same language as the user's browser (if available for the app)."
+        help.fr = "En sélectionnant `auto`, l'application utilisera la préférence utilisateur définie par le navigateur (pourvu que cette traduction soit disponible)."
+		bind = "null"
