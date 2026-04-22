@@ -37,9 +37,12 @@ ynh_script_progression "Install dependencies..."
 
 # Puppeteer HTML to PDF server
 ynh_setup_source --dest_dir="$install_dir/puppeteer-htmltopdf" --source_id="puppeteer-htmltopdf"
+chown -R "$app:$app" "$install_dir/puppeteer-htmltopdf"
+
 pushd "$install_dir/puppeteer-htmltopdf"
     ynh_hide_warnings ynh_exec_as_app npm install 
 popd
+
 ynh_config_add --template=".env" --destination="$install_dir/puppeteer-htmltopdf/.env"
 
 #=================================================
