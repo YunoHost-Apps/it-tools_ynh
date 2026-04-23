@@ -50,7 +50,7 @@ ynh_script_progression "Upgrading system configurations related to $app..."
 ynh_config_add_nginx
 
 # Create a dedicated systemd config
-ynh_config_add_systemd
+ynh_config_add_systemd --service="$app-puppeteer"
 yunohost service add "$app-puppeteer" --description="IT-Tools Puppeteer server for HTML to PDF conversion" --log="/var/log/$app/$app-puppeteer.log"
 
 # Use logrotate to manage application logfile(s)
