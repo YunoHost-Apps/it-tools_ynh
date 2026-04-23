@@ -46,14 +46,16 @@ ram.runtime = "20M"
     default = "true"
     ask.en = "Enable processing server for 'HTML to PDF' tool ? (This can later be changed)"
     ask.fr = "Activer la fonctionnalité côté serveur pour l'outil 'HTML to PDF' ? (Cela pourra être changé plus tard)"
+    help.en = "Whereas this app mostly run client-side, this specific tool requires server-side data processing. Disabling the server will make this tool unavailable"
+    help.fr = "Tandis que cette app fonctionne principalement côté client, cet outil en particulier nécessite un traitement de données côté serveur. Désactiver le serveur rendra cet outil indisponible"
 
     [install.init_puppeteer-htmltopdf_permission]
     type = "group"
     default = "all_users"
     ask.en = "Who should have access to the processing server ? (This can later be changed)"
     ask.fr = "Qui peut accéder à la fonctionnalité côté serveur ? (Cela pourra être changé plus tard)"
-    help.en = "Specific permission to access to server-side processing for the tool 'HTML to PDF'"
-    help.fr = "Permission spécifique pour accéder au processus côté serveur de l'outil 'HTML to PDF'"
+    help.en = "This might take significant server resources if used intensely"
+    help.fr = "Ceci pourrait demander des ressources significatives au serveur si utilisé de façon intense"
     visible = "enable_htmltopdf_server"
 
 [resources]
@@ -88,7 +90,7 @@ ram.runtime = "20M"
 
     [resources.permissions]
     main.url = "/"
-    puppeteer-htmltopdf.url = "/pdf/url"
+    puppeteer-htmltopdf.url = "/pdf/"
     puppeteer-htmltopdf.show_tile = false
 
     [resources.ports]
