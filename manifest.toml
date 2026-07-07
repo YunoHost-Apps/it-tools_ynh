@@ -77,8 +77,8 @@ ram.runtime = "20M"
         in_subdir = true
 
         [resources.sources.puppeteer-htmltopdf]
-        url = "https://github.com/sharevb/puppeteer-htmltopdf/archive/b7e74e81507d1f40d969213adba919b8ce584c8d.tar.gz"
-        sha256 = "2cb6cd0ea315f9c96143ee2a852f2ef0588c1f5c3690749b43bb28242aed6f63"
+        url = "https://github.com/sharevb/puppeteer-htmltopdf/archive/774e9a9d002fb0b2bc4c41b04827523eb0398b89.tar.gz"
+        sha256 = "ec75227a6afd2b0173cfef693a50ed443e79fa34ebd5593aee5855d71bcc0c3e"
         extract = true
         in_subdir = true
         autoupdate.strategy = "latest_github_commit"
