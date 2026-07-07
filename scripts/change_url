@@ -32,6 +32,14 @@ ynh_script_progression "Updating NGINX web server configuration..."
 ynh_config_change_url_nginx
 
 #=================================================
+# UPDATE SERVICE VARIABLE
+#=================================================
+ynh_script_progression "Updating system configurations related to $app ..."
+
+ynh_config_add --template=".env" --destination="$install_dir/puppeteer-htmltopdf/.env"
+ynh_systemctl --service="$app-puppeteer" --action=restart
+
+#=================================================
 # END OF SCRIPT
 #=================================================
 ynh_script_progression "Change of URL completed for $app"
