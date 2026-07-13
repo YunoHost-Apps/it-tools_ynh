@@ -45,6 +45,17 @@ popd
 
 ynh_config_add --template=".env" --destination="$install_dir/puppeteer-htmltopdf/.env"
 
+# Network utilies server
+ynh_setup_source --dest_dir="$install_dir/network-utilities" --source_id="network-utilities"
+chown -R "$app:$app" "$install_dir/network-utilities"
+
+pushd "$install_dir/network-utilities"
+    ynh_exec_as_app python3 -m venv venv
+    ynh_hide_warnings ynh_exec_as_app "venv/bin/pip" install --upgrade pip
+    ynh_hide_warnings ynh_exec_as_app "venv/bin/pip" install -r "$install_dir/network-utilities/requirements.txt"
+    ynh_safe_rm ".cache/pip"
+popd
+
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
@@ -52,9 +63,12 @@ ynh_script_progression "Adding system configurations related to $app ..."
 
 ynh_config_add_nginx
 
-# Create a dedicated systemd config
-ynh_config_add_systemd --service="$app-puppeteer"
+# Create dedicated systemd configs
+ynh_config_add_systemd --service="$app-puppeteer" --template="puppeteer-htmltopdf.service"
 yunohost service add "$app-puppeteer" --description="IT-Tools Puppeteer server for HTML to PDF conversion" --log="/var/log/$app/$app-puppeteer.log"
+
+ynh_config_add_systemd --service="$app-uvicorn" --template="network-utils.service"
+yunohost service add "$app-uvicorn" --description="IT-Tools Uvicorn server for network utilities" --log="/var/log/$app/$app-uvicorn.log"
 
 # Use logrotate to manage application logfile(s)
 ynh_config_add_logrotate

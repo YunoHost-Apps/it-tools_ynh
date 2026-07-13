@@ -41,22 +41,39 @@ ram.runtime = "20M"
     type = "group"
     default = "visitors" 
 
-    [install.enable_htmltopdf_server]
+    [install.enable_htmltopdf_service]
     type = "boolean"
     default = "true"
-    ask.en = "Enable processing server for 'HTML to PDF' tool ? (This can later be changed)"
+    ask.en = "Enable server-side feature for 'HTML to PDF' tool ? (This can later be changed)"
     ask.fr = "Activer la fonctionnalité côté serveur pour l'outil 'HTML to PDF' ? (Cela pourra être changé plus tard)"
-    help.en = "Whereas this app mostly run client-side, this specific tool requires server-side data processing. Disabling the server will make this tool unavailable"
-    help.fr = "Tandis que cette app fonctionne principalement côté client, cet outil en particulier nécessite un traitement de données côté serveur. Désactiver le serveur rendra cet outil indisponible"
+    help.en = "Whereas this app mostly run client-side, this specific tool requires server-side data processing. Disabling the service will make this tool unavailable"
+    help.fr = "Tandis que cette app fonctionne principalement côté client, cet outil en particulier nécessite un traitement de données côté serveur. Désactiver le service rendra cet outil indisponible"
 
     [install.init_puppeteer-htmltopdf_permission]
     type = "group"
     default = "all_users"
-    ask.en = "Who should have access to the processing server ? (This can later be changed)"
+    ask.en = "Who should have access to the server-side feature for 'HTML to PDF' tool  ? (This can later be changed)"
     ask.fr = "Qui peut accéder à la fonctionnalité côté serveur ? (Cela pourra être changé plus tard)"
     help.en = "This might take significant server resources if used intensely"
     help.fr = "Ceci pourrait demander des ressources significatives au serveur si utilisé de façon intense"
-    visible = "enable_htmltopdf_server"
+    visible = "enable_htmltopdf_service"
+
+    [install.enable_networkutils_service]
+    type = "boolean"
+    default = "true"
+    ask.en = "Enable processing server for network utilities ? (This can later be changed)"
+    ask.fr = "Activer la fonctionnalité côté serveur pour les utilitaires réseaux ? (Cela pourra être changé plus tard)"
+    help.en = "Whereas this app mostly run client-side, this is a specific feature that requires server-side data processing. Disabling the service will make this tool unavailable"
+    help.fr = "Tandis que cette app fonctionne principalement côté client, cet outil en particulier nécessite un traitement de données côté serveur. Désactiver le service rendra cet outil indisponible"
+
+    [install.init_puppeteer-networkutils_permission]
+    type = "group"
+    default = "all_users"
+    ask.en = "Who should have access to the server-side feature for network utilities ? (This can later be changed)"
+    ask.fr = "Qui peut accéder à la fonctionnalité côté serveur pour les utilitaires réseaux ? (Cela pourra être changé plus tard)"
+    help.en = "This might take significant server resources if used intensely"
+    help.fr = "Ceci pourrait demander des ressources significatives au serveur si utilisé de façon intense"
+    visible = "enable_networkutils_service"
 
 [resources]
 
@@ -83,6 +100,13 @@ ram.runtime = "20M"
         in_subdir = true
         autoupdate.strategy = "latest_github_commit"
 
+        [resources.sources.network-utilities]
+        url = "https://github.com/sharevb/network-utils-ws/archive/7dbd64ef7df2c8c0c9f693eef6aaabdf45051cf9.tar.gz"
+        sha256 = "4e7a544e407eeb567177d34f6eb15c4ac3a9b8e90b6c96b96b0d635e1714781b"
+        extract = true
+        in_subdir = true
+        autoupdate.strategy = "latest_github_commit"
+
     [resources.system_user]
 
     [resources.install_dir]
@@ -92,8 +116,12 @@ ram.runtime = "20M"
     main.url = "/"
     puppeteer-htmltopdf.url = "/pdf-service"
     puppeteer-htmltopdf.show_tile = false
+    network-utilities.url = "/network-service"
+    network-utilities.show_tile = false
 
     [resources.ports]
+    pupeeter-htmltopdf.default = 3000
+    network-utilities.default = 8000
 
     [resources.apt]
     # Resources only required for url to html conversion feature https://github.com/sharevb/puppeteer-htmltopdf/blob/main/Dockerfile 
