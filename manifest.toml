@@ -66,7 +66,7 @@ ram.runtime = "20M"
     help.en = "Whereas this app mostly run client-side, this is a specific feature that requires server-side data processing. Disabling the service will make this tool unavailable"
     help.fr = "Tandis que cette app fonctionne principalement côté client, cet outil en particulier nécessite un traitement de données côté serveur. Désactiver le service rendra cet outil indisponible"
 
-    [install.init_puppeteer-networkutils_permission]
+    [install.init_networkutils_permission]
     type = "group"
     default = "all_users"
     ask.en = "Who should have access to the server-side feature for network utilities ? (This can later be changed)"
