@@ -120,7 +120,6 @@ ram.runtime = "20M"
     network-utilities.show_tile = false
 
     [resources.ports]
-    pupeeter-htmltopdf.default = 3000
     network-utilities.default = 8000
 
     [resources.apt]
