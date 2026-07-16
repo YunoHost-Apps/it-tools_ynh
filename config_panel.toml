@@ -5,16 +5,37 @@ version = "1.0"
 [main]
 name = "Configuration"
 
-    [main.configuration]
-    name = ""
+    [main.server_side]
+    name.en = "Server-side features'"
+    name.fr = "Fonctionnalités côté serveur"
     optional = false
 
-        [main.configuration.htmltopdf_server]
-        ask.en = "HTML to PDF conversion server"
-        ask.fr = "Serveur de conversion HTML vers PDF"
-        type = "select"
-        choices = ["Public access", "", "auto"]
-        default = "en"
-        help.en = "If set to `auto`, the app will attempt to use the same language as the user's browser (if available for the app)."
-        help.fr = "En sélectionnant `auto`, l'application utilisera la préférence utilisateur définie par le navigateur (pourvu que cette traduction soit disponible)."
+        [main.server_side.htmltopdf_enabled]
+        ask.en = "Enable HTML to PDF conversion service"
+        ask.fr = "Activer le service de conversion HTML vers PDF"
+        type = "boolean"
+        help.en = "When enabled, it offers an API endpoint to be used in the 'HTML to PDF' tool page. Cf. details in the admin documentation."
+        help.fr = "Si activé, un ouvre un point de terminaison API à utiliser dans la page de l'outil 'HTML to PDF'. Cf. détails dans la documentation admin."
 		bind = "null"
+
+        [main.server_side.basic_auth_username]
+        ask.en = "Username for API endpoints basic authentication"
+        ask.fr = "Nom d'utilisateur pour l'authentification basique aux points API"
+        type = "string"
+        help.en = "More details on where to use this in the admin documentation."
+        help.fr = "Plus de détails sur où utiliser ceci dans la documentation admin."
+        pattern.regexp = "[^\\']+"
+        pattern.error = "Can neither be empty nor contain single quote."
+		bind = "null"
+        visible = "htmltopdf_enabled"
+
+        [main.server_side.basic_auth_password]
+        ask.en = "Password for API endpoints basic authentication"
+        ask.fr = "Mot de passe pour l'authentification basique aux points API"
+        type = "password"
+        help.en = "More details on where to use this in the admin documentation."
+        help.fr = "Plus de détails sur où utiliser ceci dans la documentation admin."
+        pattern.regexp = "[^\\']+"
+        pattern.error = "Can neither be empty nor contain single quote."
+		bind = "null"
+        visible = "htmltopdf_enabled"

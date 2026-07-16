@@ -3,7 +3,7 @@ packaging_format = 2
 id = "it-tools"
 name = "IT Tools"
 description.en = "Collection of handy online tools for developers"
-description.fr = "Collection d'outils pratiques en ligne pour les développeurs"
+description.fr = "Collection d'outils en ligne pratiques pour les développeurs"
 
 version = "2026.04.19~ynh2"
 
@@ -28,7 +28,6 @@ disk = "100M"
 ram.build = "20M"
 ram.runtime = "20M"
 
-
 [install]
     [install.domain]
     type = "domain"
@@ -46,17 +45,26 @@ ram.runtime = "20M"
     default = "true"
     ask.en = "Enable processing server for 'HTML to PDF' tool ? (This can later be changed)"
     ask.fr = "Activer la fonctionnalité côté serveur pour l'outil 'HTML to PDF' ? (Cela pourra être changé plus tard)"
-    help.en = "Whereas this app mostly run client-side, this specific tool requires server-side data processing. Disabling the server will make this tool unavailable"
-    help.fr = "Tandis que cette app fonctionne principalement côté client, cet outil en particulier nécessite un traitement de données côté serveur. Désactiver le serveur rendra cet outil indisponible"
+    help.en = "Whereas this app mostly run client-side, this specific tool requires server-side data processing. Disabling the server will make this specific tool unavailable"
+    help.fr = "Tandis que cette app fonctionne principalement côté client, cet outil en particulier nécessite un traitement de données côté serveur. Désactiver le serveur rendra cet outil spécifique indisponible"
 
-    [install.init_puppeteer-htmltopdf_permission]
-    type = "group"
-    default = "all_users"
-    ask.en = "Who should have access to the processing server ? (This can later be changed)"
-    ask.fr = "Qui peut accéder à la fonctionnalité côté serveur ? (Cela pourra être changé plus tard)"
-    help.en = "This might take significant server resources if used intensely"
-    help.fr = "Ceci pourrait demander des ressources significatives au serveur si utilisé de façon intense"
-    visible = "enable_htmltopdf_server"
+    [install.basic_auth_username]
+    type = "string"
+    ask.en = "Define a username for API basic authentication (This can later be changed)"
+    ask.fr = "Définissez un nom d'utilisateur pour s'authentifier à l'API' (Cela pourra être changé plus tard)"
+    help.en = "This will be used when enabling server-side features."
+    help.fr = "Cela sera utilisé si vous activez les fonctionnalités côté serveur."
+    pattern.regexp = "[^\\']+"
+    pattern.error = "Can neither be empty nor contain single quote."
+
+    [install.basic_auth_password]
+    type = "password"
+    ask.en = "Define a password for API basic authentication (This can later be changed)"
+    ask.fr = "Définissez un mot de passe pour s'authentifier à l'API' (Cela pourra être changé plus tard)"
+    help.en = "This will be used when enabling server-side features."
+    help.fr = "Cela sera utilisé si vous activez les fonctionnalités côté serveur."
+    pattern.regexp = "[^\\']+"
+    pattern.error = "Can neither be empty nor contain single quote."
 
 [resources]
 
@@ -92,6 +100,7 @@ ram.runtime = "20M"
     main.url = "/"
     puppeteer-htmltopdf.url = "/pdf-service"
     puppeteer-htmltopdf.show_tile = false
+    puppeteer-htmltopdf.protected = true
 
     [resources.ports]
 
