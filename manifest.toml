@@ -54,8 +54,8 @@ ram.runtime = "20M"
     ask.fr = "Définissez un nom d'utilisateur pour s'authentifier à l'API' (Cela pourra être changé plus tard)"
     help.en = "This will be used when enabling server-side features."
     help.fr = "Cela sera utilisé si vous activez les fonctionnalités côté serveur."
-    pattern.regexp = "[^\\']+"
-    pattern.error = "Can neither be empty nor contain single quote."
+    #pattern.regexp = "[^\\']+"
+    #pattern.error = "Can neither be empty nor contain single quote."
 
     [install.basic_auth_password]
     type = "password"
@@ -63,8 +63,8 @@ ram.runtime = "20M"
     ask.fr = "Définissez un mot de passe pour s'authentifier à l'API' (Cela pourra être changé plus tard)"
     help.en = "This will be used when enabling server-side features."
     help.fr = "Cela sera utilisé si vous activez les fonctionnalités côté serveur."
-    pattern.regexp = "[^\\']+"
-    pattern.error = "Can neither be empty nor contain single quote."
+    #pattern.regexp = "[^\\']+"
+    #pattern.error = "Can neither be empty nor contain single quote."
 
 [resources]
 
