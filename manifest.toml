@@ -13,7 +13,7 @@ maintainers = ["oleole39"]
 license = "GPL-3.0-only"
 demo = "https://sharevb-it-tools.vercel.app"
 code = "https://github.com/sharevb/it-tools"
-fund = "https://www.buymeacoffee.com/cthmsst"
+fund = "https://www.buymeacoffee.com/sharevb"
 
 [integration]
 yunohost = ">= 12.1.39"
