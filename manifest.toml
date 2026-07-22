@@ -40,7 +40,7 @@ ram.runtime = "20M"
     type = "group"
     default = "visitors" 
 
-    [install.enable_htmltopdf_server]
+    [install.htmltopdf_enabled]
     type = "boolean"
     default = "true"
     ask.en = "Enable processing server for 'HTML to PDF' tool ? (This can later be changed)"

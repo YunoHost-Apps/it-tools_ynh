@@ -37,6 +37,7 @@ set__basic_auth_username() {
 set__basic_auth_password() {
     ynh_config_add --template=".env" --destination="$install_dir/puppeteer-htmltopdf/.env"
     ynh_systemctl --service=$app-puppeteer --action=restart #--wait_until="Started"
+}
 
 #=================================================
 ynh_app_config_run "$1"
