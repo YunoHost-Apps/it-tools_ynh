@@ -51,7 +51,7 @@ ram.runtime = "20M"
     [install.basic_auth_username]
     type = "string"
     ask.en = "Define a username for API basic authentication (This can later be changed)"
-    ask.fr = "Définissez un nom d'utilisateur pour s'authentifier à l'API' (Cela pourra être changé plus tard)"
+    ask.fr = "Définissez un nom d'utilisateur pour s'authentifier à l'API (Cela pourra être changé plus tard)"
     help.en = "This will be used when enabling server-side features."
     help.fr = "Cela sera utilisé si vous activez les fonctionnalités côté serveur."
     #pattern.regexp = "[^\\']+"
