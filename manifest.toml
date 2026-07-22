@@ -100,7 +100,7 @@ ram.runtime = "20M"
     main.url = "/"
     puppeteer-htmltopdf.url = "/pdf-service"
     puppeteer-htmltopdf.show_tile = false
-    puppeteer-htmltopdf.protected = true
+    #puppeteer-htmltopdf.protected = true
 
     [resources.ports]
 
