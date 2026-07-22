@@ -18,24 +18,25 @@ install_dir=$(ynh_app_setting_get --key=install_dir)
 # SPECIFIC SETTERS FOR TOML SHORT KEYS
 #=================================================
 set__htmltopdf_enabled() {
-    if "$htmltopdf_enabled"; then
+    ynh_app_setting_set --key=htmltopdf_enabled --value="$htmltopdf_enabled"
+    if [ $htmltopdf_enabled -eq 1 ]; then
         ynh_permission_update --permission="puppeteer-htmltopdf" --add="visitors"
-        ynh_systemctl --service=$app-puppeteer --action=start --wait-until="Started"
-    else
+        ynh_systemctl --service=$app-puppeteer --action=start #--wait_until="Started"
+    elif [ $htmltopdf_enabled -eq 0 ]; then
         ynh_permission_update --permission="puppeteer-htmltopdf" --remove="visitors"
-        ynh_systemctl --service=$app-puppeteer --action=stop --wait-until="Consumed"
+        ynh_systemctl --service=$app-puppeteer --action=stop #--wait_until="Consumed"
     fi
 }
 
 set__basic_auth_username() {
+    ynh_app_setting_set --key=basic_auth_username --value="$basic_auth_username"
     ynh_config_add --template=".env" --destination="$install_dir/puppeteer-htmltopdf/.env"
-    ynh_systemctl --service=$app-puppeteer --action=restart --wait-until="Started"
+    ynh_systemctl --service=$app-puppeteer --action=restart #--wait_until="Started"
 }
 
 set__basic_auth_password() {
     ynh_config_add --template=".env" --destination="$install_dir/puppeteer-htmltopdf/.env"
-    ynh_systemctl --service=$app-puppeteer --action=restart --wait-until="Started"
-}
+    ynh_systemctl --service=$app-puppeteer --action=restart #--wait_until="Started"
 
 #=================================================
 ynh_app_config_run "$1"
