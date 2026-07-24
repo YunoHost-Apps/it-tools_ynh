@@ -14,7 +14,7 @@ name = "Configuration"
         ask.fr = "Activer le service de conversion HTML vers PDF"
         type = "boolean"
         help.en = "When enabled, it offers an API endpoint to be used in the 'HTML to PDF' tool page. Cf. details in the admin documentation."
-        help.fr = "Si activé, un ouvre un point de terminaison API à utiliser dans la page de l'outil 'HTML to PDF'. Cf. détails dans la documentation admin."
+        help.fr = "Si activé, ouvrir un point de terminaison API à utiliser dans la page de l'outil 'HTML to PDF'. Cf. détails dans la documentation admin."
         bind = "null"
 
         [main.server_side.basic_auth_enabled]

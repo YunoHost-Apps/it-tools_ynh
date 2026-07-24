@@ -45,14 +45,14 @@ ram.runtime = "20M"
     default = "true"
     ask.en = "Enable processing server for 'HTML to PDF' tool ? (This can later be changed)"
     ask.fr = "Activer la fonctionnalité côté serveur pour l'outil 'HTML to PDF' ? (Cela pourra être changé plus tard)"
-    help.en = "Whereas this app mostly run client-side, this specific tool requires server-side data processing. Disabling the server will make this specific tool unavailable"
-    help.fr = "Tandis que cette app fonctionne principalement côté client, cet outil en particulier nécessite un traitement de données côté serveur. Désactiver le serveur rendra cet outil spécifique indisponible"
+    help.en = "Whereas this app mostly run client-side, this specific tool requires server-side data processing.'"
+    help.fr = "Tandis que cette app fonctionne principalement côté client, cet outil en particulier nécessite un traitement de données côté serveur."
 
     [install.basic_auth_enabled]
     type = "boolean"
     default = "true"
-    ask.en = "Enable authentication for service side features"
-    ask.fr = "Activer l'authentification pour les fonctionnalités côté serveur'"
+    ask.en = "Enable authentication for service side features (This can later be changed)"
+    ask.fr = "Activer l'authentification pour les fonctionnalités côté serveur (Cela pourra être changé plus tard)"
     help.en = "When enabled, users will have to be add the username and the password defined here below in the client configuration. This is recommended to avoid high public usage of these features that could slow down your server."
     help.fr = "Si activé, les utilisateurs devront ajouter le nom d'utilisateur et le mot de passe définis ci-dessous dans la configuration du client. Ceci est recommandé pour éviter une forte utilisation publique de ces fonctionnalités qui pourraient ralentir votre server."
     visible = "htmltopdf_enabled"
@@ -111,7 +111,7 @@ ram.runtime = "20M"
     main.url = "/"
     puppeteer-htmltopdf.url = "/pdf-service"
     puppeteer-htmltopdf.show_tile = false
-    #puppeteer-htmltopdf.protected = true
+    puppeteer-htmltopdf.protected = true
 
     [resources.ports]
 
