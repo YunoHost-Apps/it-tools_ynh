@@ -11,6 +11,13 @@ ynh_app_setting_set --key=protect_against_basic_auth_spoofing --value=false
 # Since v2026.07.13~ynh2
 htmltopdf_enabled=${htmltopdf_enabled:-0}
 basic_auth_enabled=${basic_auth_enabled:-0}
+basic_auth_username=${basic_auth_username:-""}
+if [ -f "$install_dir/puppeteer-htmltopdf/.env" ]; then
+    #the password is not saved as a setting, so we have to find it in the environment variables config file
+    existing_auth_string=$(itt_helper_get_basic_auth_string)
+    existing_basic_auth_password="${auth_string#*:}" #extract password after colon sign
+fi
+basic_auth_password=${existing_basic_auth_password:-""}
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
