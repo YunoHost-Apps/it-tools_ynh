@@ -48,12 +48,22 @@ ram.runtime = "20M"
     help.en = "Whereas this app mostly run client-side, this specific tool requires server-side data processing. Disabling the server will make this specific tool unavailable"
     help.fr = "Tandis que cette app fonctionne principalement côté client, cet outil en particulier nécessite un traitement de données côté serveur. Désactiver le serveur rendra cet outil spécifique indisponible"
 
+    [install.basic_auth_enabled]
+    type = "boolean"
+    default = "true"
+    ask.en = "Enable authentication for service side features"
+    ask.fr = "Activer l'authentification pour les fonctionnalités côté serveur'"
+    help.en = "When enabled, users will have to be add the username and the password defined here below in the client configuration as a single string formatted as such `username:password`."
+    help.fr = "Si activé, les utilisateurs devront ajouter le nom d'utilisateur et le mot de passe définis ci-dessous dans la configuration du client au format `utilisateur:mot de passe`."
+    visible = "htmltopdf_enabled"
+
     [install.basic_auth_username]
     type = "string"
     ask.en = "Define a username for API basic authentication (This can later be changed)"
     ask.fr = "Définissez un nom d'utilisateur pour s'authentifier à l'API (Cela pourra être changé plus tard)"
     help.en = "This will be used when enabling server-side features."
     help.fr = "Cela sera utilisé si vous activez les fonctionnalités côté serveur."
+    visible = "basic_auth_enabled"
     #pattern.regexp = "[^\\']+"
     #pattern.error = "Can neither be empty nor contain single quote."
 
@@ -63,6 +73,7 @@ ram.runtime = "20M"
     ask.fr = "Définissez un mot de passe pour s'authentifier à l'API' (Cela pourra être changé plus tard)"
     help.en = "This will be used when enabling server-side features."
     help.fr = "Cela sera utilisé si vous activez les fonctionnalités côté serveur."
+    visible = "basic_auth_enabled"
     #pattern.regexp = "[^\\']+"
     #pattern.error = "Can neither be empty nor contain single quote."
 

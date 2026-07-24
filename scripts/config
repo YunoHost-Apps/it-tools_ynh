@@ -33,13 +33,19 @@ get__htmltopdf_enabled() {
     echo "${htmltopdf_enabled}"
 }
 
+get__basic_auth_enabled() {
+    basic_auth_enabled=$(ynh_app_setting_get --key=basic_auth_enabled)
+    echo "${basic_auth_enabled}"
+}
+
 get__basic_auth_username() {
-    htmltopdf_enabled=$(ynh_app_setting_get --key=basic_auth_username)
-    echo "${htmltopdf_enabled}"
+    local auth_string=$(itt_helper_get_basic_auth_string)
+    local username="${auth_string%%:*}" #extract username before colon sign
+    echo "${username}"
 }
 
 get__basic_auth_password() {
-    echo ""
+    echo "" #do not show password for security purpose
 }
 
 #=================================================
@@ -54,6 +60,19 @@ set__htmltopdf_enabled() {
         ynh_permission_update --permission="puppeteer-htmltopdf" --remove="visitors"
         ynh_systemctl --service=$app-puppeteer --action=stop #--wait_until="Consumed"
     fi
+}
+
+set__basic_auth_enabled() {
+    ynh_app_setting_set --key=basic_auth_enabled --value="$basic_auth_enabled"
+    if [ $basic_auth_enabled -eq 1 ]; then
+        local is_basic_auth_var=$(cat "$install_dir/puppeteer-htmltopdf/.env" | grep BASIC_AUTH)
+        if [[ -z "$is_basic_auth_var" ]]; then
+            echo "BASIC_AUTH=" >> "$install_dir/puppeteer-htmltopdf/.env"
+        fi
+    elif [ $basic_auth_enabled -eq 0 ]; then
+        sed '/^\s*BASIC_AUTH=/d' "$install_dir/puppeteer-htmltopdf/.env"
+    fi
+    ynh_systemctl --service=$app-puppeteer --action=restart #--wait_until="Started"
 }
 
 set__basic_auth_username() {

@@ -8,7 +8,6 @@ name = "Configuration"
     [main.server_side]
     name.en = "Server-side features'"
     name.fr = "Fonctionnalités côté serveur"
-    optional = false
 
         [main.server_side.htmltopdf_enabled]
         ask.en = "Enable HTML to PDF conversion service"
@@ -18,24 +17,33 @@ name = "Configuration"
         help.fr = "Si activé, un ouvre un point de terminaison API à utiliser dans la page de l'outil 'HTML to PDF'. Cf. détails dans la documentation admin."
         bind = "null"
 
+        [main.server_side.basic_auth_enabled]
+        ask.en = "Enable authentication for service side features"
+        ask.fr = "Activer l'authentification pour les fonctionnalités côté serveur'"
+        type = "boolean"
+        help.en = "When enabled, users will have to be add the username and the password defined here below in the client configuration as a single string formatted as such `username:password`."
+        help.fr = "Si activé, les utilisateurs devront ajouter le nom d'utilisateur et le mot de passe définis ci-dessous dans la configuration du client au format `utilisateur:mot de passe`."
+        bind = "null"
+        visible = "htmltopdf_enabled"
+
         [main.server_side.basic_auth_username]
         ask.en = "Username for API endpoints basic authentication"
         ask.fr = "Nom d'utilisateur pour l'authentification basique aux points API"
         type = "string"
-        help.en = "More details on where to use this in the admin documentation."
-        help.fr = "Plus de détails sur où utiliser ceci dans la documentation admin."
+        help.en = "Forbidden characters: `'` and `:`."
+        help.fr = "Caractères interdits: `'` et `:`."
         #pattern.regexp = "[^\\']+"
         #pattern.error = "Can neither be empty nor contain single quote."
         bind = "null"
-        visible = "htmltopdf_enabled"
+        visible = "basic_auth_enabled"
 
         [main.server_side.basic_auth_password]
         ask.en = "Password for API endpoints basic authentication"
         ask.fr = "Mot de passe pour l'authentification basique aux points API"
         type = "password"
-        help.en = "More details on where to use this in the admin documentation."
-        help.fr = "Plus de détails sur où utiliser ceci dans la documentation admin."
+        help.en = "Forbidden characters: `'` and `:`."
+        help.fr = "Caractères interdits: `'` et `:`."
         #pattern.regexp = "[^\\']+"
         #pattern.error = "Can neither be empty nor contain single quote."
         bind = "null"
-        visible = "htmltopdf_enabled"
+        visible = "basic_auth_enabled"
