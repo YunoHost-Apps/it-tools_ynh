@@ -47,6 +47,9 @@ pushd "$install_dir/puppeteer-htmltopdf"
 popd
 
 ynh_config_add --template=".env" --destination="$install_dir/puppeteer-htmltopdf/.env"
+if [ $basic_auth_enabled -eq 0 ]; then
+    sed '/^\s*BASIC_AUTH=/d' "$install_dir/puppeteer-htmltopdf/.env"
+fi
 
 #=================================================
 # SYSTEM CONFIGURATION
