@@ -3,7 +3,7 @@ packaging_format = 2
 id = "it-tools"
 name = "IT Tools"
 description.en = "Collection of handy online tools for developers"
-description.fr = "Collection d'outils pratiques en ligne pour les développeurs"
+description.fr = "Collection d'outils en ligne pratiques pour les développeurs"
 
 version = "2026.07.26~ynh2"
 
@@ -28,7 +28,6 @@ disk = "100M"
 ram.build = "20M"
 ram.runtime = "20M"
 
-
 [install]
     [install.domain]
     type = "domain"
@@ -39,7 +38,44 @@ ram.runtime = "20M"
 
     [install.init_main_permission]
     type = "group"
-    default = "visitors"
+    default = "visitors" 
+
+    [install.htmltopdf_enabled]
+    type = "boolean"
+    default = "true"
+    ask.en = "Enable processing server for 'HTML to PDF' tool ? (This can later be changed)"
+    ask.fr = "Activer la fonctionnalité côté serveur pour l'outil 'HTML to PDF' ? (Cela pourra être changé plus tard)"
+    help.en = "Whereas this app mostly run client-side, this specific tool requires server-side data processing.'"
+    help.fr = "Tandis que cette app fonctionne principalement côté client, cet outil en particulier nécessite un traitement de données côté serveur."
+
+    [install.basic_auth_enabled]
+    type = "boolean"
+    default = "true"
+    ask.en = "Enable authentication for service side features (This can later be changed)"
+    ask.fr = "Activer l'authentification pour les fonctionnalités côté serveur (Cela pourra être changé plus tard)"
+    help.en = "When enabled, users will have to be add the username and the password defined here below in the client configuration. This is recommended to avoid high public usage of these features that could slow down your server."
+    help.fr = "Si activé, les utilisateurs devront ajouter le nom d'utilisateur et le mot de passe définis ci-dessous dans la configuration du client. Ceci est recommandé pour éviter une forte utilisation publique de ces fonctionnalités qui pourraient ralentir votre server."
+    visible = "htmltopdf_enabled"
+
+    [install.basic_auth_username]
+    type = "string"
+    ask.en = "Define a username for API basic authentication (This can later be changed)"
+    ask.fr = "Définissez un nom d'utilisateur pour s'authentifier à l'API (Cela pourra être changé plus tard)"
+    help.en = "This will be used when enabling server-side features."
+    help.fr = "Cela sera utilisé si vous activez les fonctionnalités côté serveur."
+    visible = "basic_auth_enabled"
+    #pattern.regexp = "[^\\']+"
+    #pattern.error = "Can neither be empty nor contain single quote."
+
+    [install.basic_auth_password]
+    type = "password"
+    ask.en = "Define a password for API basic authentication (This can later be changed)"
+    ask.fr = "Définissez un mot de passe pour s'authentifier à l'API' (Cela pourra être changé plus tard)"
+    help.en = "This will be used when enabling server-side features."
+    help.fr = "Cela sera utilisé si vous activez les fonctionnalités côté serveur."
+    visible = "basic_auth_enabled"
+    #pattern.regexp = "[^\\']+"
+    #pattern.error = "Can neither be empty nor contain single quote."
 
 [resources]
 
@@ -59,6 +95,13 @@ ram.runtime = "20M"
         extract = true
         in_subdir = true
 
+        [resources.sources.puppeteer-htmltopdf]
+        url = "https://github.com/sharevb/puppeteer-htmltopdf/archive/774e9a9d002fb0b2bc4c41b04827523eb0398b89.tar.gz"
+        sha256 = "ec75227a6afd2b0173cfef693a50ed443e79fa34ebd5593aee5855d71bcc0c3e"
+        extract = true
+        in_subdir = true
+        autoupdate.strategy = "latest_github_commit"
+
     [resources.system_user]
 
     [resources.install_dir]
@@ -66,6 +109,16 @@ ram.runtime = "20M"
 
     [resources.permissions]
     main.url = "/"
+    puppeteer-htmltopdf.url = "/pdf-service"
+    puppeteer-htmltopdf.show_tile = false
+    puppeteer-htmltopdf.protected = true
+
+    [resources.ports]
 
     [resources.apt]
-    packages = "python3, make, g++"
+    # Resources only required for url to html conversion feature https://github.com/sharevb/puppeteer-htmltopdf/blob/main/Dockerfile 
+    packages = "chromium, chromium-common, chromium-driver, fonts-liberation, libasound2, libatk-bridge2.0-0, libatk1.0-0, libcups2, libdbus-1-3, libdrm2, libgbm1, libgtk-3-0, libnspr4, libnss3, libxcomposite1, libxdamage1, libxfixes3, libxrandr2, wget"
+
+    [resources.nodejs]
+    # Resources only required for url to html conversion feature https://github.com/sharevb/puppeteer-htmltopdf/blob/main/Dockerfile 
+    version = "20"

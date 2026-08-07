@@ -1,0 +1,49 @@
+#:schema https://github.com/YunoHost/apps/raw/master/schemas/config_panel.v1.schema.json
+
+version = "1.0"
+
+[main]
+name = "Configuration"
+
+    [main.server_side]
+    name.en = "Server-side features'"
+    name.fr = "Fonctionnalités côté serveur"
+
+        [main.server_side.htmltopdf_enabled]
+        ask.en = "Enable HTML to PDF conversion service"
+        ask.fr = "Activer le service de conversion HTML vers PDF"
+        type = "boolean"
+        help.en = "When enabled, it offers an API endpoint to be used in the 'HTML to PDF' tool page. Cf. details in the admin documentation."
+        help.fr = "Si activé, ouvrir un point de terminaison API à utiliser dans la page de l'outil 'HTML to PDF'. Cf. détails dans la documentation admin."
+        bind = "null"
+
+        [main.server_side.basic_auth_enabled]
+        ask.en = "Enable authentication for service side features"
+        ask.fr = "Activer l'authentification pour les fonctionnalités côté serveur'"
+        type = "boolean"
+        help.en = "When enabled, users will have to be add the username and the password defined here below in the client configuration. This is recommended to avoid high public usage of these features that could slow down your server."
+        help.fr = "Si activé, les utilisateurs devront ajouter le nom d'utilisateur et le mot de passe définis ci-dessous dans la configuration du client. Ceci est recommandé pour éviter une forte utilisation publique de ces fonctionnalités qui pourraient ralentir votre server."
+        bind = "null"
+        visible = "htmltopdf_enabled"
+
+        [main.server_side.basic_auth_username]
+        ask.en = "Username for API endpoints basic authentication"
+        ask.fr = "Nom d'utilisateur pour l'authentification basique aux points API"
+        type = "string"
+        help.en = "Forbidden characters: `'` and `:`."
+        help.fr = "Caractères interdits: `'` et `:`."
+        #pattern.regexp = "[^\\']+"
+        #pattern.error = "Can neither be empty nor contain single quote."
+        bind = "null"
+        visible = "basic_auth_enabled"
+
+        [main.server_side.basic_auth_password]
+        ask.en = "Password for API endpoints basic authentication"
+        ask.fr = "Mot de passe pour l'authentification basique aux points API"
+        type = "password"
+        help.en = "Forbidden characters: `'` and `:`."
+        help.fr = "Caractères interdits: `'` et `:`."
+        #pattern.regexp = "[^\\']+"
+        #pattern.error = "Can neither be empty nor contain single quote."
+        bind = "null"
+        visible = "basic_auth_enabled"
