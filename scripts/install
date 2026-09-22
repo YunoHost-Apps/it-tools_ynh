@@ -23,10 +23,9 @@ if [[ $(shopt globstar | awk '{print $2}') == off ]]; then
     shopt -s globstar #allow for loop to look in subdir using **
 fi
 
-for f in $install_dir/**/*
+for f in $install_dir/**/*.js $install_dir/**/*.html  $install_dir/**/*.webmanifest
 do
     if [ -f "$f" ]; then
-        echo "Parsing $f..."
         ynh_replace --match="/__YNH_PATH__/" --replace="$newpath/" --file="$f" #e.g. /__YNH_PATH__/assets or `/__YNH_PATH__/`
         ynh_replace --match="/__YNH_PATH__\([a-zA-Z0-9]\)" --replace="$newpath/\1" --file="$f" #e.g. /__YNH_PATH__home.custom.md
         ynh_replace --match="/__YNH_PATH__" --replace="$path" --file="$f" #e.g. `/__YNH_PATH__`
