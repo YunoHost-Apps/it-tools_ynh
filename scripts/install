@@ -12,44 +12,10 @@ ynh_setup_source --dest_dir="$install_dir" --source_id="ynh_build"
 #Prepare $newpath for string replacement (empty if $path is root or $path if subdir is defined)
 newpath=""
 if [[ $path != '/' ]]; then newpath=$path; fi
-newpathafter="$newpath/"
 
-# Replace URL placeholder with $path only in specific cases
-index_js_path="$(sed --regexp-extended --silent 's@\s*<script type="module" crossorigin src=".*/(assets/index-[^.]*\.js)\"></script>@\1@p' $install_dir/index.html)" #e.g. assets/index-86994da2.js
-
-disable_globstar=false
-if [[ $(shopt globstar | awk '{print $2}') == off ]]; then
-    disable_globstar=true
-    shopt -s globstar #allow for loop to look in subdir using **
-fi
-
-for f in $install_dir/**/*.js $install_dir/**/*.html  $install_dir/**/*.webmanifest
-do
-    if [ -f "$f" ]; then
-        ynh_replace --match="/__YNH_PATH__/" --replace="$newpath/" --file="$f" #e.g. /__YNH_PATH__/assets or `/__YNH_PATH__/`
-        ynh_replace --match="/__YNH_PATH__\([a-zA-Z0-9]\)" --replace="$newpath/\1" --file="$f" #e.g. /__YNH_PATH__home.custom.md
-        ynh_replace --match="/__YNH_PATH__" --replace="$path" --file="$f" #e.g. `/__YNH_PATH__`
-        ynh_replace --match="__YNH_PATH__" --replace="${newpathafter:1}" --file="$f" #e.g. ("__YNH_PATH__index.html")
-    fi
-done
-
-if [[ $disable_globstar -eq 1 ]]; then
-    shopt -u globstar #disable globstar if it was disabled before running this script
-fi
-
-# Various specific path fixes
-#sed --regexp-extended --in-place "s@([^,=]*)=\"/__YNH_DOMAIN____YNH_SUBDIR_PATH__\";([^.]*)\.defaults\(\{fontPath:\`\\$\{([^}]*)\}figlet-fonts@\1=\"https://$domain$newpath/\";\2.defaults({fontPath:\`\\$\{\1\}figlet-fonts@g" $install_dir/assets/ascii-text-drawer-*.js
-#grep --extended-regexp --recursive --files-with-matches --ignore-case "/age_wasm/wasm_exec.js" | xargs -d '\n' sed --regexp-extended --in-place "s@\"/age_wasm/wasm_exec.js@\"/$newpath/age_wasm_wasm_exec.js}/@g"
-#ynh_replace --match="tools-filter.json" --replace="/tools-filter.json" --file="$install_dir/$index_js_path"
-#ynh_replace --match="tools-settings.json" --replace="/tools-settings.json" --file="$install_dir/$index_js_path"
-#ynh_replace --match="external-tools.json" --replace="/external-tools.json" --file="$install_dir/$index_js_path"
-#ynh_replace --match="home.custom.md" --replace="/home.custom.md" --file="$install_dir/$index_js_path"
+# Replace placeholders
+ynh_replace --match="/__YNH_PATH__/" --replace="$newpath/" --file="$install_dir/index.html"
 ynh_replace --match="https://sharevb-it-tools.vercel.app" --replace="https://$domain$path" --file="$install_dir/index.html"
-
-# Replace URL placeholder with absolute URL for all files of the app folder
-#match_regex="/?__YNH_DOMAIN____YNH_SUBDIR_PATH__"
-#sed --regexp-extended --in-place "s@$match_regex@https://$domain$newpath/@g" $install_dir/manifest.webmanifest
-#grep --extended-regexp --recursive --files-with-matches --ignore-case "$match_regex" $install_dir/* | xargs -d '\n' sed --regexp-extended --in-place "s@$match_regex@https://$domain$newpath@g"
 
 #=================================================
 # SYSTEM CONFIGURATION
