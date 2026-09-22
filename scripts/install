@@ -33,7 +33,7 @@ do
     fi
 done
 
-if [ $disable_globstar -eq 1 ]; then
+if [[ $disable_globstar -eq 1 ]]; then
     shopt -u globstar #disable globstar if it was disabled before running this script
 fi
 
