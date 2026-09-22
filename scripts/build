@@ -38,7 +38,7 @@ function ynh_build_instructions {
     #=================================================
     # BUILD INSTRUCTIONS (REQUIRED)
     #=================================================
-    corepack enable pnpm && pnpm install --ignore-scripts --frozen-lockfile && BASE_URL="__YNH_DOMAIN____YNH_SUBDIR_PATH__" pnpm build
+    corepack enable pnpm && pnpm install --ignore-scripts --frozen-lockfile && HOSTNAME="https://__YNH_DOMAIN__/" && BASE_URL="__YNH_PATH__" pnpm build
 }
 
 #=================================================
